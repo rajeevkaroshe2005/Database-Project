@@ -1,0 +1,12 @@
+{
+  "name": "booksphere-platform",
+  "version": "1.0.0",
+  "description": "BOOKSPHERE — Online Booking & Reservation System (Full-Stack DBMS Project)",
+  "scripts": {
+    "dev:backend": "cd backend && node server.js",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["booking", "threejs", "mysql", "react", "express", "reservation"]
+}
