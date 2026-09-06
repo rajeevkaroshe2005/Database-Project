@@ -131,9 +131,9 @@ export default function App() {
               onBookNow={handleOpenBooking}
             />
 
-            {/* Interactive 3D Service Inspector Section */}
+            {/* Interactive 3D City Tour & Service Inspector Section */}
             <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Service3DViewer />
+              <Service3DViewer services={services} onSelectService={handleOpenBooking} />
             </section>
 
             {/* Dynamic Catalog & Real-Time Filter View */}
