@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "BOOKSPHERE — Online Booking & Reservation System (Full-Stack DBMS Project)",
   "scripts": {
+    "start": "node backend/server.js",
+    "build": "npm --prefix backend install && npm --prefix frontend install && npm --prefix frontend run build",
     "dev:backend": "cd backend && node server.js",
     "dev:frontend": "cd frontend && npm run dev",
     "build:frontend": "cd frontend && npm run build",
