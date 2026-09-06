@@ -20,14 +20,20 @@ import {
   Table,
   Code,
   Terminal,
-  Share2
+  Share2,
+  Download,
+  Zap,
+  BookOpen
 } from 'lucide-react';
 import { api } from '../../services/api';
 import SqlConsole from './SqlConsole';
 import ErDiagramViewer from './ErDiagramViewer';
+import ConcurrencySimulator from './ConcurrencySimulator';
+import NormalizationProofs from './NormalizationProofs';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('analytics'); // analytics | services | bookings | audit | database
+  const [exporting, setExporting] = useState(false);
   const [analytics, setAnalytics] = useState(null);
   const [services, setServices] = useState([]);
   const [bookings, setBookings] = useState([]);
@@ -76,6 +82,30 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleExportSql = async () => {
+    setExporting(true);
+    try {
+      const res = await api.exportSqlDump();
+      if (res.success && res.sqlDump) {
+        const blob = new Blob([res.sqlDump], { type: 'text/sql;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', res.filename || 'booksphere_database_dump.sql');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } else {
+        alert(res.message || 'Failed to export SQL dump');
+      }
+    } catch (err) {
+      alert(err.message || 'Failed to export SQL dump');
+    } finally {
+      setExporting(false);
+    }
+  };
 
   const handleCreateService = async (e) => {
     e.preventDefault();
@@ -133,13 +163,25 @@ export default function AdminDashboard() {
           </h1>
         </div>
 
-        <button
-          onClick={fetchData}
-          className="p-2.5 rounded-xl glass-panel text-slate-300 hover:text-white flex items-center gap-2 text-xs self-start sm:self-auto"
-        >
-          <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-cyan-400' : ''}`} />
-          <span>Refresh Metrics</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2.5 self-start sm:self-auto">
+          <button
+            onClick={handleExportSql}
+            disabled={exporting}
+            className="p-2.5 rounded-xl glass-panel text-cyan-300 hover:text-white hover:bg-cyan-500/20 border border-cyan-500/30 flex items-center gap-2 text-xs transition-all shadow-glow-cyan"
+            title="Download full MySQL DDL Schema + DML Inserts .sql dump"
+          >
+            <Download className={`w-3.5 h-3.5 ${exporting ? 'animate-bounce text-cyan-400' : 'text-cyan-400'}`} />
+            <span>{exporting ? 'Exporting SQL...' : 'Export Database (.sql)'}</span>
+          </button>
+
+          <button
+            onClick={fetchData}
+            className="p-2.5 rounded-xl glass-panel text-slate-300 hover:text-white flex items-center gap-2 text-xs"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-cyan-400' : ''}`} />
+            <span>Refresh Metrics</span>
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}
@@ -147,7 +189,9 @@ export default function AdminDashboard() {
         {[
           { id: 'analytics', label: 'Analytics & KPIs', icon: TrendingUp },
           { id: 'database', label: '🗄️ Database Tables Explorer', icon: Database },
-          { id: 'sql-console', label: '⚡ Live SQL Query Console', icon: Terminal },
+          { id: 'sql-console', label: '⚡ Live SQL & EXPLAIN Console', icon: Terminal },
+          { id: 'concurrency', label: '🏎️ ACID Concurrency Simulator', icon: Zap },
+          { id: 'normalization', label: '📐 3NF Proofs & Dictionary', icon: BookOpen },
           { id: 'er-diagram', label: '🕸️ Interactive ER Diagram', icon: Share2 },
           { id: 'services', label: 'Service Inventory & CRUD', icon: Layers },
           { id: 'bookings', label: 'Global Bookings Ledger', icon: FileText },
@@ -628,7 +672,17 @@ export default function AdminDashboard() {
         <SqlConsole />
       )}
 
-      {/* 7. INTERACTIVE ER DIAGRAM */}
+      {/* 7. CONCURRENCY SIMULATOR */}
+      {activeTab === 'concurrency' && (
+        <ConcurrencySimulator />
+      )}
+
+      {/* 8. NORMALIZATION PROOFS & DATA DICTIONARY */}
+      {activeTab === 'normalization' && (
+        <NormalizationProofs />
+      )}
+
+      {/* 9. INTERACTIVE ER DIAGRAM */}
       {activeTab === 'er-diagram' && (
         <ErDiagramViewer />
       )}

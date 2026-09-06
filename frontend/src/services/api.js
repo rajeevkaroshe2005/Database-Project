@@ -90,5 +90,8 @@ export const api = {
   getAuditLogs: () => request('/admin/audit-logs'),
   getUsers: () => request('/admin/users'),
   getDatabaseExplorer: () => request('/admin/database'),
-  executeSqlQuery: (sql) => request('/admin/query', { method: 'POST', body: { sql } })
+  executeSqlQuery: (sql) => request('/admin/query', { method: 'POST', body: { sql } }),
+  simulateConcurrency: (data) => request('/admin/simulate-concurrency', { method: 'POST', body: data }),
+  explainQuery: (sql) => request('/admin/explain-query', { method: 'POST', body: { sql } }),
+  exportSqlDump: () => request('/admin/export-sql')
 };
