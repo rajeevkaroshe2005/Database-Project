@@ -5,7 +5,6 @@ import Footer from './components/common/Footer';
 import HeroSection from './components/home/HeroSection';
 import CategoryCards from './components/home/CategoryCards';
 import DiscoverExperiences from './components/home/DiscoverExperiences';
-import Service3DViewer from './components/3d/Service3DViewer';
 import ServiceCatalog from './components/home/ServiceCatalog';
 import MembershipTiers from './components/home/MembershipTiers';
 import BookingModal from './components/booking/BookingModal';
@@ -131,11 +130,6 @@ export default function App() {
               services={services.filter(s => s.is_featured)}
               onBookNow={handleOpenBooking}
             />
-
-            {/* Interactive 3D City Tour & Service Inspector Section */}
-            <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Service3DViewer services={services} onSelectService={handleOpenBooking} />
-            </section>
 
             {/* Dynamic Catalog & Real-Time Filter View */}
             <ServiceCatalog
