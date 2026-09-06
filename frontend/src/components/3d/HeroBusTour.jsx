@@ -50,32 +50,36 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
   };
 
   return (
-    <div className="relative w-full h-[460px] sm:h-[500px] lg:h-[540px] rounded-3xl overflow-hidden glass-panel border border-cyan-500/30 shadow-2xl bg-gradient-to-b from-space-950 via-space-900 to-space-950 select-none">
+    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-cyan-500/30 shadow-2xl bg-gradient-to-b from-space-950 via-space-900 to-space-950 select-none">
       {/* Top HUD Controls Overlay */}
       <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2 pointer-events-auto">
         {/* Live Status Badge */}
-        <div className="glass-panel px-3 py-1.5 rounded-full border border-cyan-500/40 text-xs font-mono text-white flex items-center gap-2 shadow-glow-cyan backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="font-bold text-[11px] uppercase tracking-wider text-cyan-300">
+        <div className="glass-panel px-3.5 py-1.5 rounded-full border border-cyan-500/40 text-xs font-mono text-white flex items-center gap-2 shadow-glow-cyan backdrop-blur-md">
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
+          <span className="font-black text-xs uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
             BookSphere Express 3D
           </span>
           <span className="text-slate-500 hidden sm:inline">•</span>
-          <span className="text-slate-300 text-[10px] hidden sm:inline">{speedKmh} km/h</span>
+          <span className="text-cyan-300 font-bold text-xs hidden sm:inline">{speedKmh} km/h</span>
         </div>
 
-        {/* Quick Controls: Camera & Play/Pause */}
+        {/* Quick Controls: Speed, Camera & Play/Pause */}
         <div className="flex items-center gap-1.5 glass-panel p-1 rounded-2xl border border-white/10 backdrop-blur-md">
+          {/* Speed Preset Button */}
           <button
-            onClick={() => setIsDriving(!isDriving)}
-            className={"p-1.5 rounded-xl border text-xs font-bold flex items-center gap-1 transition-all " +
-              (isDriving
-                ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                : "bg-amber-500/20 text-amber-300 border-amber-500/40")}
-            title={isDriving ? "Pause Cruise" : "Resume Cruise"}
+            onClick={() => {
+              if (speedLevel === 'cruise') setSpeedLevel('express');
+              else if (speedLevel === 'express') setSpeedLevel('turbo');
+              else setSpeedLevel('cruise');
+            }}
+            className="px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold bg-white/10 text-cyan-300 border border-white/10 hover:border-cyan-400/50 transition-all flex items-center gap-1"
+            title="Toggle Highway Speed"
           >
-            {isDriving ? <Pause className="w-3.5 h-3.5 fill-emerald-300" /> : <Play className="w-3.5 h-3.5 fill-amber-300" />}
+            <Gauge className="w-3 h-3 text-cyan-400" />
+            <span>{speedKmh} km/h</span>
           </button>
 
+          {/* Camera Switcher */}
           <button
             onClick={() => setCameraMode(cameraMode === 'chase' ? 'orbit' : 'chase')}
             className={"px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 " +
@@ -86,6 +90,18 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
           >
             <Camera className="w-3 h-3 text-cyan-300" />
             <span className="hidden sm:inline">{cameraMode === 'orbit' ? 'Free Orbit' : 'Follow Bus'}</span>
+          </button>
+
+          {/* Play/Pause */}
+          <button
+            onClick={() => setIsDriving(!isDriving)}
+            className={"p-1.5 rounded-xl border text-xs font-bold flex items-center gap-1 transition-all " +
+              (isDriving
+                ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+                : "bg-amber-500/20 text-amber-300 border-amber-500/40")}
+            title={isDriving ? "Pause Cruise" : "Resume Cruise"}
+          >
+            {isDriving ? <Pause className="w-3.5 h-3.5 fill-emerald-300" /> : <Play className="w-3.5 h-3.5 fill-amber-300" />}
           </button>
         </div>
       </div>
@@ -102,31 +118,36 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
 
       {/* Bottom Milestone Card: Shows landmark the bus is passing right now */}
       {currentLandmark && (
-        <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-auto sm:max-w-sm z-20 glass-panel p-3.5 rounded-2xl border border-cyan-500/30 bg-space-950/85 backdrop-blur-md shadow-glow-cyan animate-in fade-in space-y-2 pointer-events-auto">
+        <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-auto sm:max-w-md z-20 glass-panel p-4 rounded-2xl border border-cyan-500/40 bg-space-950/90 backdrop-blur-md shadow-glow-cyan animate-in fade-in space-y-2.5 pointer-events-auto">
           <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-white/10 border border-white/10">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                 {getLandmarkIcon(currentLandmark.category)}
               </div>
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold block leading-none">
-                  Now Passing:
-                </span>
-                <h4 className="text-xs font-bold text-white mt-0.5 truncate max-w-[200px]">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold block leading-none">
+                    Now Passing:
+                  </span>
+                  <span className="px-1.5 py-0.5 rounded bg-white/10 text-slate-300 text-[9px] font-mono font-bold">
+                    {currentLandmark.category}
+                  </span>
+                </div>
+                <h4 className="text-xs sm:text-sm font-extrabold text-white mt-0.5 truncate max-w-[220px]">
                   {currentLandmark.title}
                 </h4>
               </div>
             </div>
 
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold whitespace-nowrap">
+            <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold whitespace-nowrap">
               {currentLandmark.price}
             </span>
           </div>
 
-          <div className="flex items-center justify-between pt-1 border-t border-white/10 text-[11px]">
-            <span className="text-slate-400 flex items-center gap-1 font-mono">
-              <MapPin className="w-3 h-3 text-cyan-400" />
-              {currentLandmark.city} • {currentLandmark.category}
+          <div className="flex items-center justify-between pt-2 border-t border-white/10 text-xs">
+            <span className="text-slate-400 flex items-center gap-1.5 font-mono text-[11px]">
+              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+              {currentLandmark.city} • Verified Available
             </span>
 
             <button
@@ -138,18 +159,18 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="glow-button px-2.5 py-1 rounded-lg text-[10px] font-bold text-white shadow-glow-cyan flex items-center gap-1"
+              className="glow-button px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-glow-cyan flex items-center gap-1.5"
             >
               <span>Book Venue</span>
-              <ArrowRight className="w-2.5 h-2.5" />
+              <ArrowRight className="w-3 h-3" />
             </button>
           </div>
         </div>
       )}
 
       {/* Subtle Bottom Right Hint */}
-      <div className="absolute bottom-2.5 right-3 text-[10px] text-slate-500 font-mono hidden md:flex items-center gap-1.5 pointer-events-none">
-        <span>Drag to rotate</span>
+      <div className="absolute bottom-2.5 right-3 text-[10px] text-slate-400 font-mono hidden md:flex items-center gap-1.5 pointer-events-none bg-space-950/60 px-2 py-1 rounded-lg border border-white/5">
+        <span>Click & drag to rotate 3D world</span>
         <span>•</span>
         <span>Scroll to zoom</span>
       </div>
