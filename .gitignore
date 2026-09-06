@@ -2,10 +2,12 @@
 node_modules/
 */node_modules/
 
-# Production builds
+# Production builds & caches
 dist/
 build/
 */dist/
+.vite/
+*/.vite/
 
 # Environment files
 .env
