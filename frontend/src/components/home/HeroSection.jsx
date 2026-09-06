@@ -1,10 +1,10 @@
 import React from 'react';
 import { Compass, Sparkles, ArrowDown, ShieldCheck } from 'lucide-react';
-import HeroGlobeScene from '../3d/HeroGlobeScene';
+import HeroBusTour from '../3d/HeroBusTour';
 import FloatingSearchBar from './FloatingSearchBar';
 import ParticleField from '../3d/ParticleField';
 
-export default function HeroSection({ onSelectService, onSearchSubmit, onExploreCatalog }) {
+export default function HeroSection({ onSelectService, onSearchSubmit, onExploreCatalog, services = [] }) {
   return (
     <div className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Ambient 3D Particle Field */}
@@ -64,9 +64,9 @@ export default function HeroSection({ onSelectService, onSearchSubmit, onExplore
             </div>
           </div>
 
-          {/* Right Column: High-Quality Interactive 3D Scene */}
+          {/* Right Column: High-Quality Interactive 3D Bus Tour Scene */}
           <div className="lg:col-span-6 relative">
-            <HeroGlobeScene onSelectService={onSelectService} />
+            <HeroBusTour onSelectService={onSelectService} services={services} />
           </div>
         </div>
 

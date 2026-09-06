@@ -109,8 +109,9 @@ export default function App() {
           </div>
         ) : (
           <>
-            {/* Cinematic 3D Hero */}
+            {/* Cinematic 3D Hero with Live 3D Bus City Tour */}
             <HeroSection
+              services={services}
               onSelectService={handleGlobePinClick}
               onSearchSubmit={handleSearchSubmit}
               onExploreCatalog={() => {
