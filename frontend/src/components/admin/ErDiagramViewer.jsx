@@ -18,7 +18,7 @@ export default function ErDiagramViewer() {
   const domains = [
     {
       name: 'Security & Memberships',
-      color: 'border-blue-500/40 text-blue-400 bg-blue-950/20',
+      color: 'border-blue-500/40 text-blue-400 bg-blue-50',
       tables: [
         {
           name: 'memberships',
@@ -42,7 +42,7 @@ export default function ErDiagramViewer() {
     },
     {
       name: 'Catalog & Locations',
-      color: 'border-cyan-500/40 text-cyan-400 bg-cyan-950/20',
+      color: 'border-cyan-500/40 text-[#B86B4B] bg-emerald-50',
       tables: [
         {
           name: 'categories',
@@ -78,7 +78,7 @@ export default function ErDiagramViewer() {
     },
     {
       name: 'Granular Inventory & Locks',
-      color: 'border-emerald-500/40 text-emerald-400 bg-emerald-950/20',
+      color: 'border-emerald-500/40 text-emerald-400 bg-teal-50',
       tables: [
         {
           name: 'seats',
@@ -114,7 +114,7 @@ export default function ErDiagramViewer() {
     },
     {
       name: 'Booking & Order Subsystem',
-      color: 'border-purple-500/40 text-purple-400 bg-purple-950/20',
+      color: 'border-purple-500/40 text-purple-400 bg-amber-50',
       tables: [
         {
           name: 'bookings',
@@ -138,7 +138,7 @@ export default function ErDiagramViewer() {
     },
     {
       name: 'Financials, Refunds & Coupons',
-      color: 'border-amber-500/40 text-amber-400 bg-amber-950/20',
+      color: 'border-amber-500/40 text-amber-400 bg-orange-50',
       tables: [
         {
           name: 'payments',
@@ -210,26 +210,26 @@ export default function ErDiagramViewer() {
       <div className="glass-panel p-6 rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/30 via-space-900 to-purple-950/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Share2 className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-lg font-black text-white">Entity-Relationship (ER) Architecture</h3>
+            <Share2 className="w-5 h-5 text-[#B86B4B]" />
+            <h3 className="text-lg font-black text-[#171513]">Entity-Relationship (ER) Architecture</h3>
             <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-500/30">
               3NF Relational Model
             </span>
           </div>
-          <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs text-[#38342F] mt-1 max-w-2xl leading-relaxed">
             Visualized relational layout mapping primary keys [PK], foreign key [FK] references, and entity cardinalities (1:1, 1:N, M:N) across 25 normalized tables.
           </p>
         </div>
 
         {/* Search Input */}
-        <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs">
-          <Search className="w-3.5 h-3.5 text-slate-400 mr-2" />
+        <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-[#E8DFD1] text-xs">
+          <Search className="w-3.5 h-3.5 text-[#5C554B] mr-2" />
           <input
             type="text"
             placeholder="Search table..."
             value={searchTable}
             onChange={(e) => setSearchTable(e.target.value)}
-            className="bg-transparent text-white outline-none text-xs placeholder:text-slate-500"
+            className="bg-transparent text-[#171513] outline-none text-xs placeholder:text-slate-500"
           />
         </div>
       </div>
@@ -239,14 +239,14 @@ export default function ErDiagramViewer() {
         {domains.map((dom, dIdx) => (
           <div
             key={dIdx}
-            className="glass-panel rounded-3xl p-5 border border-white/10 space-y-4"
+            className="glass-panel rounded-3xl p-5 border border-[#E8DFD1] space-y-4"
           >
             {/* Domain Title */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="flex items-center justify-between border-b border-[#E8DFD1] pb-3">
               <span className={`text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border ${dom.color}`}>
                 {dom.name}
               </span>
-              <span className="text-[10px] text-slate-400 font-mono">{dom.tables.length} Tables</span>
+              <span className="text-[10px] text-[#5C554B] font-mono">{dom.tables.length} Tables</span>
             </div>
 
             {/* Tables Inside Domain */}
@@ -262,14 +262,14 @@ export default function ErDiagramViewer() {
                       className={`p-3.5 rounded-2xl border transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-cyan-500/20 border-cyan-400 shadow-glow-cyan'
-                          : 'bg-space-950/70 hover:bg-white/5 border-white/10'
+                          : 'bg-white/70 hover:bg-[#FAF8F3] border-[#E8DFD1]'
                       }`}
                     >
                       {/* Table Header */}
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <Database className="w-3.5 h-3.5 text-cyan-400" />
-                          <span className="text-xs font-bold font-mono text-white">{table.name}</span>
+                          <Database className="w-3.5 h-3.5 text-[#B86B4B]" />
+                          <span className="text-xs font-bold font-mono text-[#171513]">{table.name}</span>
                         </div>
                         <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/40 px-1.5 py-0.5 rounded border border-cyan-500/30">
                           PK: {table.pk}
@@ -284,14 +284,14 @@ export default function ErDiagramViewer() {
                               <span className="px-1 rounded bg-purple-950 border border-purple-500/30">FK</span>
                               <span>{fk.field}</span>
                               <ArrowRight className="w-2.5 h-2.5 text-slate-500" />
-                              <span className="text-cyan-400">{fk.ref}</span>
+                              <span className="text-[#B86B4B]">{fk.ref}</span>
                             </div>
                           ))}
                         </div>
                       )}
 
                       {/* Key Attributes */}
-                      <div className="text-[10px] text-slate-400 font-mono space-y-0.5 pt-1 border-t border-white/5">
+                      <div className="text-[10px] text-[#5C554B] font-mono space-y-0.5 pt-1 border-t border-[#E8DFD1]">
                         {table.fields.slice(0, 3).map((f, i) => (
                           <div key={i} className="truncate">• {f}</div>
                         ))}
@@ -308,9 +308,9 @@ export default function ErDiagramViewer() {
       {selectedEntity && (
         <div className="glass-panel p-5 rounded-2xl border border-cyan-500/40 shadow-glow-cyan flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
           <div>
-            <div className="text-xs font-mono font-bold text-cyan-400 uppercase">Selected Entity</div>
-            <h4 className="text-base font-extrabold text-white font-mono">TABLE: {selectedEntity.name}</h4>
-            <div className="text-xs text-slate-400 mt-1 flex flex-wrap gap-2">
+            <div className="text-xs font-mono font-bold text-[#B86B4B] uppercase">Selected Entity</div>
+            <h4 className="text-base font-extrabold text-[#171513] font-mono">TABLE: {selectedEntity.name}</h4>
+            <div className="text-xs text-[#5C554B] mt-1 flex flex-wrap gap-2">
               <span className="font-semibold text-slate-200">Primary Key: {selectedEntity.pk}</span>
               <span>•</span>
               <span>Foreign Keys: {selectedEntity.fks.length}</span>
@@ -321,7 +321,7 @@ export default function ErDiagramViewer() {
 
           <button
             onClick={() => setSelectedEntity(null)}
-            className="self-start sm:self-auto px-4 py-1.5 rounded-xl text-xs font-semibold glass-panel text-slate-300 hover:text-white"
+            className="self-start sm:self-auto px-4 py-1.5 rounded-xl text-xs font-semibold glass-panel text-[#38342F] hover:text-[#171513]"
           >
             Close Inspector
           </button>

@@ -258,13 +258,13 @@ export default function NormalizationProofs() {
       <div className="glass-panel p-6 rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/30 via-space-900 to-purple-950/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-lg font-black text-white">Relational Normalization Proofs & Data Dictionary</h3>
+            <BookOpen className="w-5 h-5 text-[#B86B4B]" />
+            <h3 className="text-lg font-black text-[#171513]">Relational Normalization Proofs & Data Dictionary</h3>
             <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-500/30">
               DBMS Theory & Formal Proofs
             </span>
           </div>
-          <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs text-[#38342F] mt-1 max-w-2xl leading-relaxed">
             Mathematical demonstrations of 1NF, 2NF, 3NF, and BCNF normalization applied to the BookSphere relational engine, complete with functional dependency analysis and a comprehensive schema data dictionary.
           </p>
         </div>
@@ -278,13 +278,13 @@ export default function NormalizationProofs() {
       </div>
 
       {/* Sub-navigation Tabs */}
-      <div className="flex gap-2 border-b border-white/10 pb-2">
+      <div className="flex gap-2 border-b border-[#E8DFD1] pb-2">
         <button
           onClick={() => setActiveTab('proofs')}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'proofs'
               ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-glow-cyan'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              : 'text-[#5C554B] hover:text-[#171513] hover:bg-[#FAF8F3]'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -296,7 +296,7 @@ export default function NormalizationProofs() {
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'fds'
               ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-glow-purple'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              : 'text-[#5C554B] hover:text-[#171513] hover:bg-[#FAF8F3]'
           }`}
         >
           <Code className="w-3.5 h-3.5" />
@@ -308,7 +308,7 @@ export default function NormalizationProofs() {
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'dictionary'
               ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              : 'text-[#5C554B] hover:text-[#171513] hover:bg-[#FAF8F3]'
           }`}
         >
           <FileSpreadsheet className="w-3.5 h-3.5" />
@@ -332,12 +332,12 @@ export default function NormalizationProofs() {
                 onClick={() => setSelectedProof(nf.id)}
                 className={`p-3.5 rounded-2xl border text-left transition-all ${
                   selectedProof === nf.id
-                    ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-glow-cyan'
-                    : 'glass-panel hover:bg-white/5 border-white/10 text-slate-300'
+                    ? 'bg-cyan-500/20 border-cyan-400 text-[#171513] shadow-glow-cyan'
+                    : 'glass-panel hover:bg-[#FAF8F3] border-[#E8DFD1] text-[#38342F]'
                 }`}
               >
                 <div className="text-xs font-black uppercase text-cyan-300">{nf.title}</div>
-                <div className="text-[11px] text-slate-400 mt-1">{nf.subtitle}</div>
+                <div className="text-[11px] text-[#5C554B] mt-1">{nf.subtitle}</div>
               </button>
             ))}
           </div>
@@ -345,12 +345,12 @@ export default function NormalizationProofs() {
           {/* Proof Body Card */}
           <div className="glass-panel p-6 rounded-3xl border border-white/15 space-y-6">
             <div>
-              <h4 className="text-base font-extrabold text-white flex items-center gap-2">
+              <h4 className="text-base font-extrabold text-[#171513] flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                 {proofs[selectedProof].title}
               </h4>
-              <div className="mt-2 p-3.5 rounded-xl bg-space-950/80 border border-white/10 text-xs font-mono text-slate-300 leading-relaxed">
-                <strong className="text-cyan-400">Formal Definition:</strong> {proofs[selectedProof].axiom}
+              <div className="mt-2 p-3.5 rounded-xl bg-white/80 border border-[#E8DFD1] text-xs font-mono text-[#38342F] leading-relaxed">
+                <strong className="text-[#B86B4B]">Formal Definition:</strong> {proofs[selectedProof].axiom}
               </div>
             </div>
 
@@ -368,12 +368,12 @@ export default function NormalizationProofs() {
                   </span>
                 </div>
 
-                <div className="text-xs text-slate-300">
+                <div className="text-xs text-[#38342F]">
                   {proofs[selectedProof].violation.description}
                 </div>
 
                 {/* Table representation */}
-                <div className="overflow-x-auto rounded-xl border border-red-500/20 bg-space-950">
+                <div className="overflow-x-auto rounded-xl border border-red-500/20 bg-white">
                   <table className="w-full text-left text-[11px] font-mono">
                     <thead className="bg-red-950/30 text-red-300 text-[10px] uppercase border-b border-red-500/20">
                       <tr>
@@ -382,7 +382,7 @@ export default function NormalizationProofs() {
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5 text-slate-300">
+                    <tbody className="divide-y divide-white/5 text-[#38342F]">
                       {proofs[selectedProof].violation.rows.map((r, i) => (
                         <tr key={i}>
                           {proofs[selectedProof].violation.columns.map((c, j) => (
@@ -411,26 +411,26 @@ export default function NormalizationProofs() {
                   </span>
                 </div>
 
-                <div className="text-xs text-slate-300">
+                <div className="text-xs text-[#38342F]">
                   {proofs[selectedProof].solution.description}
                 </div>
 
                 {/* Tables representation */}
                 <div className="space-y-3">
                   {proofs[selectedProof].solution.tables.map((t, idx) => (
-                    <div key={idx} className="rounded-xl border border-emerald-500/20 bg-space-950 overflow-hidden">
+                    <div key={idx} className="rounded-xl border border-emerald-500/20 bg-white overflow-hidden">
                       <div className="bg-emerald-950/40 px-3 py-1.5 text-[10px] font-bold text-emerald-300 font-mono border-b border-emerald-500/20">
                         {t.name}
                       </div>
                       <table className="w-full text-left text-[11px] font-mono">
-                        <thead className="bg-space-900 text-slate-400 text-[10px] uppercase border-b border-white/5">
+                        <thead className="bg-[#FAF8F3] text-[#5C554B] text-[10px] uppercase border-b border-[#E8DFD1]">
                           <tr>
                             {t.columns.map((c, i) => (
-                              <th key={i} className="p-2 whitespace-nowrap text-cyan-400">{c}</th>
+                              <th key={i} className="p-2 whitespace-nowrap text-[#B86B4B]">{c}</th>
                             ))}
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5 text-slate-300">
+                        <tbody className="divide-y divide-white/5 text-[#38342F]">
                           {t.rows.map((r, i) => (
                             <tr key={i}>
                               {t.columns.map((c, j) => (
@@ -457,20 +457,20 @@ export default function NormalizationProofs() {
       {activeTab === 'fds' && (
         <div className="glass-panel p-6 rounded-3xl border border-white/15 space-y-6">
           <div>
-            <h4 className="text-sm font-extrabold text-white flex items-center gap-2">
+            <h4 className="text-sm font-extrabold text-[#171513] flex items-center gap-2">
               <Key className="w-4 h-4 text-purple-400" />
               Functional Dependencies Registry (Armstrong's Axioms Validated)
             </h4>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-[#5C554B] mt-1">
               Every functional dependency X → Y ensures that for any two valid tuples t1 and t2 in relation R, if t1[X] = t2[X], then t1[Y] = t2[Y].
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {functionalDependencies.map((fd, idx) => (
-              <div key={idx} className="glass-panel p-4 rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all space-y-2">
+              <div key={idx} className="bg-white p-4 rounded-2xl border border-[#DDD3C4] shadow-sm hover:border-purple-500/40 transition-all space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-cyan-300 bg-space-950 px-2 py-0.5 rounded border border-white/10">
+                  <span className="text-xs font-mono font-bold text-cyan-300 bg-white px-2 py-0.5 rounded border border-[#E8DFD1]">
                     Relation: {fd.source}
                   </span>
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -479,7 +479,7 @@ export default function NormalizationProofs() {
                 </div>
 
                 {/* Mathematical Equation */}
-                <div className="p-2.5 rounded-xl bg-space-950 border border-purple-500/20 flex items-center gap-2 text-xs font-mono">
+                <div className="p-2.5 rounded-xl bg-white border border-purple-500/20 flex items-center gap-2 text-xs font-mono">
                   <span className="text-amber-400 font-bold">{fd.determinant}</span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
                   <span className="text-purple-300 truncate">
@@ -487,7 +487,7 @@ export default function NormalizationProofs() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] text-slate-400">
+                <div className="flex items-center justify-between text-[11px] text-[#5C554B]">
                   <span>Type: <strong className="text-slate-200">{fd.type}</strong></span>
                   <span>{fd.dependents.length} Determined Attributes</span>
                 </div>
@@ -502,11 +502,11 @@ export default function NormalizationProofs() {
         <div className="glass-panel p-6 rounded-3xl border border-white/15 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h4 className="text-sm font-extrabold text-white flex items-center gap-2">
-                <Database className="w-4 h-4 text-cyan-400" />
+              <h4 className="text-sm font-extrabold text-[#171513] flex items-center gap-2">
+                <Database className="w-4 h-4 text-[#B86B4B]" />
                 Schema Data Dictionary & Referential Integrity
               </h4>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-[#5C554B] mt-0.5">
                 Detailed metadata catalog for all relational entities, primary key semantics, and foreign key cascades.
               </p>
             </div>
@@ -514,7 +514,7 @@ export default function NormalizationProofs() {
             {/* Filter controls */}
             <div className="flex flex-wrap items-center gap-2">
               <div className="relative">
-                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#5C554B]" />
                 <input
                   type="text"
                   placeholder="Search tables or keys..."
@@ -530,8 +530,8 @@ export default function NormalizationProofs() {
                   onClick={() => setDictCategory(c)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
                     dictCategory === c
-                      ? 'bg-cyan-500 text-white shadow-glow-cyan'
-                      : 'glass-panel text-slate-400 hover:text-white'
+                      ? 'bg-cyan-500 text-[#171513] shadow-glow-cyan'
+                      : 'glass-panel text-[#5C554B] hover:text-[#171513]'
                   }`}
                 >
                   {c}
@@ -541,9 +541,9 @@ export default function NormalizationProofs() {
           </div>
 
           {/* Dictionary Table */}
-          <div className="overflow-x-auto rounded-2xl border border-white/10 bg-space-950/70">
+          <div className="overflow-x-auto rounded-2xl border border-[#E8DFD1] bg-white/70">
             <table className="w-full text-left text-xs">
-              <thead className="bg-space-900 text-slate-400 uppercase text-[10px] tracking-wider border-b border-white/10 font-mono">
+              <thead className="bg-[#FAF8F3] text-[#5C554B] uppercase text-[10px] tracking-wider border-b border-[#E8DFD1] font-mono">
                 <tr>
                   <th className="p-3 whitespace-nowrap">Table Name</th>
                   <th className="p-3 whitespace-nowrap">Domain</th>
@@ -555,9 +555,9 @@ export default function NormalizationProofs() {
               </thead>
               <tbody className="divide-y divide-white/5 font-mono text-[11px]">
                 {filteredDict.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/5 transition-colors">
+                  <tr key={idx} className="hover:bg-[#FAF8F3] transition-colors">
                     <td className="p-3 font-bold text-cyan-300">{row.name}</td>
-                    <td className="p-3 text-slate-300">
+                    <td className="p-3 text-[#38342F]">
                       <span className="px-2 py-0.5 rounded bg-white/10 text-[10px]">
                         {row.category}
                       </span>
@@ -571,7 +571,7 @@ export default function NormalizationProofs() {
                         {row.nf}
                       </span>
                     </td>
-                    <td className="p-3 font-sans text-slate-300 max-w-md">
+                    <td className="p-3 font-sans text-[#38342F] max-w-md">
                       {row.desc}
                     </td>
                   </tr>
