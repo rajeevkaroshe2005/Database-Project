@@ -1,6 +1,6 @@
 import React from 'react';
 import { Compass, Sparkles, ArrowDown, ShieldCheck } from 'lucide-react';
-import HeroBusTour from '../3d/HeroBusTour';
+import HeroExperienceShowcase from './HeroExperienceShowcase';
 import FloatingSearchBar from './FloatingSearchBar';
 import ParticleField from '../3d/ParticleField';
 
@@ -23,10 +23,10 @@ export default function HeroSection({ onSelectService, onSearchSubmit, onExplore
               <span>The Premier Unified Reservation System</span>
             </div>
 
-            {/* Editorial Heading: 100% Solid Visible Colors - Never Transparent! */}
+            {/* Editorial Heading: 100% Solid Visible Colors - Guaranteed zero fading/clipping! */}
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#171513] leading-[1.12] font-serif">
               BOOK YOUR NEXT{' '}
-              <span className="block font-serif italic text-[#B86B4B] mt-1">
+              <span className="block font-serif italic text-[#B86B4B] mt-1 tracking-normal pr-4 select-all">
                 EXPERIENCE
               </span>
             </h1>
@@ -64,9 +64,9 @@ export default function HeroSection({ onSelectService, onSearchSubmit, onExplore
             </div>
           </div>
 
-          {/* Right Column: High-Quality Interactive 3D Bus Tour Scene */}
+          {/* Right Column: Interactive 3D Luxury Destination Hub (Replaces 3D Bus) */}
           <div className="lg:col-span-6 relative">
-            <HeroBusTour onSelectService={onSelectService} services={services} />
+            <HeroExperienceShowcase onSelectService={onSelectService} services={services} />
           </div>
         </div>
 
