@@ -110,7 +110,7 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1">
         {activeView === 'admin' ? (
-          <div className="pt-24 sm:pt-28 pb-16">
+          <div className="pt-24 sm:pt-28 pb-16 bg-[#F8F6F1] min-h-[calc(100vh-80px)]">
             <AdminDashboard />
           </div>
         ) : activeView === 'my-bookings' ? (

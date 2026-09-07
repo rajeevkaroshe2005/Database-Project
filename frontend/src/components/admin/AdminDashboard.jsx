@@ -32,7 +32,7 @@ import ConcurrencySimulator from './ConcurrencySimulator';
 import NormalizationProofs from './NormalizationProofs';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState('analytics'); // analytics | services | bookings | audit | database
+  const [activeTab, setActiveTab] = useState('analytics'); // analytics | services | bookings | audit | database | sql-console | concurrency | normalization | er-diagram
   const [exporting, setExporting] = useState(false);
   const [analytics, setAnalytics] = useState(null);
   const [services, setServices] = useState([]);
@@ -155,10 +155,10 @@ export default function AdminDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#243B35]">
-            <Shield className="w-4 h-4" />
+            <Shield className="w-4 h-4 text-[#243B35]" />
             <span>Platform Command Center</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#171513] mt-1 font-serif">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1E1E1E] mt-1 font-serif tracking-tight">
             Admin Management & Analytics
           </h1>
         </div>
@@ -167,25 +167,25 @@ export default function AdminDashboard() {
           <button
             onClick={handleExportSql}
             disabled={exporting}
-            className="p-2.5 rounded-xl bg-white text-[#171513] hover:bg-[#FAF8F3] border border-[#DDD3C4] flex items-center gap-2 text-xs font-bold transition-all shadow-sm"
+            className="p-2.5 rounded-xl bg-[#243B35] text-white hover:bg-[#1B2D29] border border-[#243B35] flex items-center gap-2 text-xs font-bold transition-all shadow-sm disabled:opacity-50"
             title="Download full MySQL DDL Schema + DML Inserts .sql dump"
           >
-            <Download className={`w-3.5 h-3.5 ${exporting ? 'animate-bounce text-cyan-400' : 'text-cyan-400'}`} />
+            <Download className={`w-3.5 h-3.5 text-[#C9A96E] ${exporting ? 'animate-bounce' : ''}`} />
             <span>{exporting ? 'Exporting SQL...' : 'Export Database (.sql)'}</span>
           </button>
 
           <button
             onClick={fetchData}
-            className="p-2.5 rounded-xl bg-white text-[#171513] hover:bg-[#FAF8F3] border border-[#DDD3C4] flex items-center gap-2 text-xs font-bold shadow-sm"
+            className="p-2.5 rounded-xl bg-white text-[#1E1E1E] hover:bg-[#F8F6F1] border border-[#E5E0D6] flex items-center gap-2 text-xs font-bold transition-all shadow-sm"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-cyan-400' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-[#243B35] ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh Metrics</span>
           </button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-[#E8DFD1] pb-3 mb-8 overflow-x-auto">
+      <div className="flex gap-2 border-b border-[#E5E0D6] pb-3 mb-8 overflow-x-auto">
         {[
           { id: 'analytics', label: 'Analytics & KPIs', icon: TrendingUp },
           { id: 'database', label: '🗄️ Database Tables Explorer', icon: Database },
@@ -198,17 +198,18 @@ export default function AdminDashboard() {
           { id: 'audit', label: 'Live Database Audit Trail', icon: Activity },
         ].map((t) => {
           const Icon = t.icon;
+          const isActive = activeTab === t.id;
           return (
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-                activeTab === t.id
-                  ? 'bg-[#243B35] text-[#171513] shadow-sm font-bold border border-[#243B35]'
-                  : 'bg-white text-[#4A443B] hover:text-[#171513] hover:bg-[#FAF8F3] border border-[#DDD3C4] font-semibold'
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs whitespace-nowrap transition-all ${
+                isActive
+                  ? 'bg-[#243B35] text-white shadow-sm font-bold border border-[#243B35]'
+                  : 'bg-white text-[#5E5A54] hover:text-[#1E1E1E] hover:bg-[#F8F6F1] border border-[#E5E0D6] font-semibold'
               }`}
             >
-              <Icon className="w-3.5 h-3.5" />
+              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#C9A96E]' : 'text-[#6F6A62]'}`} />
               <span>{t.label}</span>
             </button>
           );
@@ -217,11 +218,11 @@ export default function AdminDashboard() {
 
       {/* Loading State */}
       {loading && !analytics && (
-        <div className="py-24 flex flex-col items-center justify-center space-y-4 bg-white rounded-3xl border border-[#DDD3C4] shadow-sm">
-          <RefreshCw className="w-10 h-10 text-cyan-400 animate-spin" />
+        <div className="py-24 flex flex-col items-center justify-center space-y-4 bg-white rounded-3xl border border-[#E5E0D6] shadow-sm">
+          <RefreshCw className="w-10 h-10 text-[#243B35] animate-spin" />
           <div className="text-center">
-            <h3 className="text-base font-bold text-[#171513]">Loading Platform Data & MySQL Metrics...</h3>
-            <p className="text-xs text-[#786F62] mt-1 font-semibold">Connecting to Dual-Mode Database Engine & 25 Tables</p>
+            <h3 className="text-base font-bold text-[#1E1E1E] font-serif">Loading Platform Data & MySQL Metrics...</h3>
+            <p className="text-xs text-[#6F6A62] mt-1 font-semibold">Connecting to Dual-Mode Database Engine & 25 Tables</p>
           </div>
         </div>
       )}
@@ -231,83 +232,94 @@ export default function AdminDashboard() {
         <div className="space-y-8">
           {/* Top KPI Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD3C4] shadow-sm">
-              <div className="text-[#786F62] text-xs font-bold flex items-center justify-between mb-1">
+            <div className="bg-white p-5 rounded-2xl border border-[#E5E0D6] shadow-sm hover:border-[#C9A96E] transition-all">
+              <div className="text-[#6F6A62] text-xs font-bold uppercase tracking-wider flex items-center justify-between mb-1">
                 <span>Total Revenue</span>
-                <DollarSign className="w-4 h-4 text-emerald-400" />
+                <div className="w-7 h-7 rounded-lg bg-[#C9A96E]/15 flex items-center justify-center text-[#C9A96E]">
+                  <DollarSign className="w-4 h-4" />
+                </div>
               </div>
-              <div className="text-xl sm:text-2xl font-black text-[#171513]">
+              <div className="text-2xl font-black text-[#1E1E1E] font-serif tracking-tight">
                 ₹{analytics.totalRevenue.toLocaleString('en-IN')}
               </div>
-              <div className="text-[10px] text-emerald-400 mt-1">↑ 18.4% vs last month</div>
+              <div className="text-[11px] text-[#243B35] font-semibold mt-1">↑ 18.4% vs last month</div>
             </div>
 
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD3C4] shadow-sm">
-              <div className="text-[#786F62] text-xs font-bold flex items-center justify-between mb-1">
+            <div className="bg-white p-5 rounded-2xl border border-[#E5E0D6] shadow-sm hover:border-[#243B35] transition-all">
+              <div className="text-[#6F6A62] text-xs font-bold uppercase tracking-wider flex items-center justify-between mb-1">
                 <span>Total Bookings</span>
-                <TrendingUp className="w-4 h-4 text-cyan-400" />
+                <div className="w-7 h-7 rounded-lg bg-[#243B35]/15 flex items-center justify-center text-[#243B35]">
+                  <TrendingUp className="w-4 h-4" />
+                </div>
               </div>
-              <div className="text-xl sm:text-2xl font-black text-[#171513]">
+              <div className="text-2xl font-black text-[#1E1E1E] font-serif tracking-tight">
                 {analytics.totalBookings}
               </div>
-              <div className="text-[10px] text-[#B86B4B] mt-1 font-semibold">Confirmed reservations</div>
+              <div className="text-[11px] text-[#B86B4B] font-semibold mt-1">Confirmed reservations</div>
             </div>
 
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD3C4] shadow-sm">
-              <div className="text-[#786F62] text-xs font-bold flex items-center justify-between mb-1">
+            <div className="bg-white p-5 rounded-2xl border border-[#E5E0D6] shadow-sm hover:border-[#B86B4B] transition-all">
+              <div className="text-[#6F6A62] text-xs font-bold uppercase tracking-wider flex items-center justify-between mb-1">
                 <span>Active Users</span>
-                <Users className="w-4 h-4 text-blue-400" />
+                <div className="w-7 h-7 rounded-lg bg-[#B86B4B]/15 flex items-center justify-center text-[#B86B4B]">
+                  <Users className="w-4 h-4" />
+                </div>
               </div>
-              <div className="text-xl sm:text-2xl font-black text-[#171513]">
+              <div className="text-2xl font-black text-[#1E1E1E] font-serif tracking-tight">
                 {analytics.activeUsers}
               </div>
-              <div className="text-[10px] text-[#786F62] mt-1 font-semibold">Verified accounts</div>
+              <div className="text-[11px] text-[#6F6A62] font-semibold mt-1">Verified accounts</div>
             </div>
 
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD3C4] shadow-sm">
-              <div className="text-[#786F62] text-xs font-bold flex items-center justify-between mb-1">
+            <div className="bg-white p-5 rounded-2xl border border-[#E5E0D6] shadow-sm hover:border-[#243B35] transition-all">
+              <div className="text-[#6F6A62] text-xs font-bold uppercase tracking-wider flex items-center justify-between mb-1">
                 <span>Occupancy Rate</span>
-                <Percent className="w-4 h-4 text-[#243B35]" />
+                <div className="w-7 h-7 rounded-lg bg-[#243B35]/15 flex items-center justify-center text-[#243B35]">
+                  <Percent className="w-4 h-4" />
+                </div>
               </div>
-              <div className="text-xl sm:text-2xl font-black text-[#171513]">
+              <div className="text-2xl font-black text-[#1E1E1E] font-serif tracking-tight">
                 {analytics.occupancyRate}%
               </div>
-              <div className="text-[10px] text-[#243B35] mt-1">High venue utilization</div>
+              <div className="text-[11px] text-[#243B35] font-semibold mt-1">High venue utilization</div>
             </div>
 
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD3C4] shadow-sm">
-              <div className="text-[#786F62] text-xs font-bold flex items-center justify-between mb-1">
+            <div className="bg-white p-5 rounded-2xl border border-[#E5E0D6] shadow-sm hover:border-[#B86B4B] transition-all">
+              <div className="text-[#6F6A62] text-xs font-bold uppercase tracking-wider flex items-center justify-between mb-1">
                 <span>Cancellation Rate</span>
-                <XCircle className="w-4 h-4 text-amber-400" />
+                <div className="w-7 h-7 rounded-lg bg-[#B86B4B]/15 flex items-center justify-center text-[#B86B4B]">
+                  <XCircle className="w-4 h-4" />
+                </div>
               </div>
-              <div className="text-xl sm:text-2xl font-black text-[#171513]">
+              <div className="text-2xl font-black text-[#1E1E1E] font-serif tracking-tight">
                 {analytics.cancellationRate}%
               </div>
-              <div className="text-[10px] text-[#786F62] mt-1 font-semibold">Healthy low churn</div>
+              <div className="text-[11px] text-[#6F6A62] font-semibold mt-1">Healthy low churn</div>
             </div>
           </div>
 
           {/* Interactive Chart Visualizations */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Category Revenue Breakdown */}
-            <div className="bg-white p-6 rounded-2xl border border-[#DDD3C4] shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-[#171513] uppercase tracking-wider font-serif">
+            <div className="bg-white p-6 rounded-2xl border border-[#E5E0D6] shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-[#1E1E1E] uppercase tracking-wider font-serif">
                 Revenue by Vertical
               </h3>
               <div className="space-y-3">
                 {analytics.categoryBreakdown.map((c, idx) => {
                   const maxRev = Math.max(...analytics.categoryBreakdown.map(x => x.revenue || 1));
                   const pct = Math.round((c.revenue / (maxRev || 1)) * 100);
+                  const barColor = idx % 2 === 0 ? 'bg-[#243B35]' : 'bg-[#B86B4B]';
 
                   return (
                     <div key={idx} className="space-y-1">
                       <div className="flex justify-between text-xs">
-                        <span className="font-semibold text-[#171513]">{c.name}</span>
+                        <span className="font-semibold text-[#1E1E1E]">{c.name}</span>
                         <span className="text-[#B86B4B] font-mono font-bold">₹{c.revenue.toLocaleString('en-IN')}</span>
                       </div>
-                      <div className="w-full h-2 rounded-full bg-[#FAF8F3] border border-[#E8DFD1] overflow-hidden">
+                      <div className="w-full h-2.5 rounded-full bg-[#F3EFE7] border border-[#E5E0D6] overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"
+                          className={`h-full ${barColor} rounded-full transition-all duration-500`}
                           style={{ width: `${Math.max(8, pct)}%` }}
                         />
                       </div>
@@ -318,24 +330,24 @@ export default function AdminDashboard() {
             </div>
 
             {/* Monthly Trend Bars */}
-            <div className="bg-white p-6 rounded-2xl border border-[#DDD3C4] shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-[#171513] uppercase tracking-wider font-serif">
+            <div className="bg-white p-6 rounded-2xl border border-[#E5E0D6] shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-[#1E1E1E] uppercase tracking-wider font-serif">
                 Monthly Growth & Booking Trajectory
               </h3>
-              <div className="h-48 flex items-end justify-between gap-3 pt-6 border-b border-[#E8DFD1] pb-2">
+              <div className="h-48 flex items-end justify-between gap-3 pt-6 border-b border-[#E5E0D6] pb-2">
                 {analytics.monthlyTrends.map((m, idx) => {
                   const maxTrend = 450000;
                   const height = Math.round((m.revenue / maxTrend) * 100);
                   return (
                     <div key={idx} className="flex-1 flex flex-col items-center gap-2 group">
-                      <div className="text-[10px] text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
+                      <div className="text-[10px] text-[#B86B4B] opacity-0 group-hover:opacity-100 transition-opacity font-mono font-bold">
                         ₹{Math.round(m.revenue / 1000)}k
                       </div>
                       <div
-                        className="w-full rounded-t-lg bg-gradient-to-t from-blue-600 to-cyan-400 group-hover:brightness-125 transition-all shadow-glow-cyan"
+                        className="w-full rounded-t-lg bg-[#243B35] hover:bg-[#B86B4B] transition-all duration-300 shadow-sm"
                         style={{ height: `${height}%` }}
                       />
-                      <span className="text-[11px] text-[#5C554B]">{m.month}</span>
+                      <span className="text-[11px] text-[#6F6A62] font-medium">{m.month}</span>
                     </div>
                   );
                 })}
@@ -345,29 +357,29 @@ export default function AdminDashboard() {
 
           {/* Peak Hours & Payment Methods */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-[#DDD3C4] shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-[#171513] uppercase tracking-wider font-serif">
+            <div className="bg-white p-6 rounded-2xl border border-[#E5E0D6] shadow-sm space-y-3">
+              <h3 className="text-sm font-bold text-[#1E1E1E] uppercase tracking-wider font-serif">
                 Peak Booking Windows
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {analytics.peakHours.map((h, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-[#FAF8F3] border border-[#E8DFD1] border border-[#E8DFD1] text-center">
-                    <span className="text-[10px] text-[#5C554B] block">{h.hour}</span>
-                    <span className="text-base font-bold text-[#171513] mt-1 block">{h.bookings} bookings</span>
+                  <div key={i} className="p-3.5 rounded-xl bg-[#F8F6F1] border border-[#E5E0D6] text-center">
+                    <span className="text-[10px] text-[#6F6A62] font-bold uppercase tracking-wider block">{h.hour}</span>
+                    <span className="text-base font-bold text-[#1E1E1E] font-serif mt-1 block">{h.bookings} bookings</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-[#DDD3C4] shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-[#171513] uppercase tracking-wider font-serif">
+            <div className="bg-white p-6 rounded-2xl border border-[#E5E0D6] shadow-sm space-y-3">
+              <h3 className="text-sm font-bold text-[#1E1E1E] uppercase tracking-wider font-serif">
                 Payment Method Share
               </h3>
               <div className="space-y-2.5">
                 {analytics.paymentMethods.map((p, i) => (
-                  <div key={i} className="flex items-center justify-between text-xs p-2 rounded-lg bg-[#FAF8F3]">
-                    <span className="font-semibold text-[#171513]">{p.method}</span>
-                    <span className="font-mono text-cyan-400 font-bold">{p.percentage}%</span>
+                  <div key={i} className="flex items-center justify-between text-xs p-3 rounded-xl bg-[#F8F6F1] border border-[#E5E0D6]">
+                    <span className="font-semibold text-[#1E1E1E]">{p.method}</span>
+                    <span className="font-mono text-[#B86B4B] font-bold">{p.percentage}%</span>
                   </div>
                 ))}
               </div>
@@ -380,19 +392,19 @@ export default function AdminDashboard() {
       {activeTab === 'services' && (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <span className="text-xs text-[#5C554B]">Manage all bookable services in database</span>
+            <span className="text-xs text-[#5E5A54] font-medium">Manage all bookable services in database</span>
             <button
               onClick={() => setShowAddModal(true)}
-              className="glow-button px-4 py-2 rounded-xl text-xs font-bold text-[#171513] flex items-center gap-1.5 shadow-glow-cyan"
+              className="bg-[#243B35] hover:bg-[#1B2D29] text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 text-[#C9A96E]" />
               Add New Service
             </button>
           </div>
 
-          <div className="glass-panel rounded-2xl border border-[#E8DFD1] overflow-hidden">
+          <div className="bg-white rounded-2xl border border-[#E5E0D6] overflow-hidden shadow-sm">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#FAF8F3] border border-[#E8DFD1] text-[#5C554B] uppercase text-[10px] tracking-wider border-b border-[#E8DFD1]">
+              <thead className="bg-[#F8F6F1] text-[#6F6A62] uppercase text-[10px] font-bold tracking-wider border-b border-[#E5E0D6]">
                 <tr>
                   <th className="p-4">Service</th>
                   <th className="p-4">Category</th>
@@ -402,21 +414,23 @@ export default function AdminDashboard() {
                   <th className="p-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-[#E5E0D6]">
                 {services.map((s) => (
-                  <tr key={s.id} className="hover:bg-[#FAF8F3] transition-colors">
-                    <td className="p-4 font-bold text-[#171513] flex items-center gap-2">
-                      <img src={s.cover_image} className="w-8 h-8 rounded-lg object-cover" />
+                  <tr key={s.id} className="hover:bg-[#F8F6F1]/80 transition-colors">
+                    <td className="p-4 font-bold text-[#1E1E1E] flex items-center gap-2.5">
+                      <img src={s.cover_image} className="w-8 h-8 rounded-lg object-cover border border-[#E5E0D6]" />
                       <span>{s.title}</span>
                     </td>
-                    <td className="p-4 text-cyan-400 font-medium">{s.parent_type}</td>
-                    <td className="p-4 text-[#38342F]">{s.city}</td>
-                    <td className="p-4 font-mono font-bold text-[#171513]">₹{s.base_price}</td>
+                    <td className="p-4 text-[#B86B4B] font-semibold">{s.parent_type}</td>
+                    <td className="p-4 text-[#5E5A54]">{s.city}</td>
+                    <td className="p-4 font-mono font-bold text-[#1E1E1E]">₹{s.base_price}</td>
                     <td className="p-4">
                       <span
                         onClick={() => handleToggleStatus(s)}
-                        className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase cursor-pointer ${
-                          s.status === 'active' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase cursor-pointer transition-colors ${
+                          s.status === 'active'
+                            ? 'bg-[#243B35]/15 text-[#243B35] border border-[#243B35]/30'
+                            : 'bg-[#B86B4B]/15 text-[#B86B4B] border border-[#B86B4B]/30'
                         }`}
                       >
                         {s.status}
@@ -425,7 +439,7 @@ export default function AdminDashboard() {
                     <td className="p-4 text-right space-x-2">
                       <button
                         onClick={() => handleDeleteService(s.id)}
-                        className="p-1.5 rounded-lg text-red-400 hover:bg-red-950/40 transition-colors"
+                        className="p-1.5 rounded-lg text-[#C75B5B] hover:bg-red-50 transition-colors"
                         title="Delete Service"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -441,9 +455,9 @@ export default function AdminDashboard() {
 
       {/* 3. GLOBAL BOOKINGS TAB */}
       {activeTab === 'bookings' && (
-        <div className="glass-panel rounded-2xl border border-[#E8DFD1] overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#E5E0D6] overflow-hidden shadow-sm">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#FAF8F3] border border-[#E8DFD1] text-[#5C554B] uppercase text-[10px] tracking-wider border-b border-[#E8DFD1]">
+            <thead className="bg-[#F8F6F1] text-[#6F6A62] uppercase text-[10px] font-bold tracking-wider border-b border-[#E5E0D6]">
               <tr>
                 <th className="p-4">Ref</th>
                 <th className="p-4">Customer</th>
@@ -453,22 +467,22 @@ export default function AdminDashboard() {
                 <th className="p-4">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-[#E5E0D6]">
               {bookings.map((b) => (
-                <tr key={b.id} className="hover:bg-[#FAF8F3] transition-colors">
-                  <td className="p-4 font-mono font-bold text-cyan-400">{b.booking_ref}</td>
-                  <td className="p-4 text-[#171513] font-medium">{b.customer_name || 'Customer'}</td>
-                  <td className="p-4 text-[#38342F]">{b.service_title}</td>
-                  <td className="p-4 text-[#5C554B]">{b.scheduled_date}</td>
-                  <td className="p-4 font-mono font-bold text-[#171513]">₹{b.final_amount?.toLocaleString('en-IN')}</td>
+                <tr key={b.id} className="hover:bg-[#F8F6F1]/80 transition-colors">
+                  <td className="p-4 font-mono font-bold text-[#243B35]">{b.booking_ref}</td>
+                  <td className="p-4 text-[#1E1E1E] font-medium">{b.customer_name || 'Customer'}</td>
+                  <td className="p-4 text-[#5E5A54]">{b.service_title}</td>
+                  <td className="p-4 text-[#6F6A62]">{b.scheduled_date}</td>
+                  <td className="p-4 font-mono font-bold text-[#1E1E1E]">₹{b.final_amount?.toLocaleString('en-IN')}</td>
                   <td className="p-4">
                     <span
-                      className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase ${
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase ${
                         b.status === 'confirmed'
-                          ? 'bg-emerald-500/20 text-emerald-300'
+                          ? 'bg-[#243B35]/15 text-[#243B35] border border-[#243B35]/30'
                           : b.status === 'completed'
-                          ? 'bg-blue-500/20 text-blue-300'
-                          : 'bg-red-500/20 text-red-300'
+                          ? 'bg-[#4A6FA5]/15 text-[#4A6FA5] border border-[#4A6FA5]/30'
+                          : 'bg-[#B86B4B]/15 text-[#B86B4B] border border-[#B86B4B]/30'
                       }`}
                     >
                       {b.status}
@@ -483,29 +497,29 @@ export default function AdminDashboard() {
 
       {/* 4. AUDIT LOGS TAB */}
       {activeTab === 'audit' && (
-        <div className="glass-panel rounded-2xl border border-[#E8DFD1] overflow-hidden">
-          <div className="p-4 border-b border-[#E8DFD1] bg-[#FAF8F3] border border-[#E8DFD1] flex justify-between items-center">
-            <span className="text-xs font-bold text-[#171513] uppercase tracking-wider">
+        <div className="bg-white rounded-2xl border border-[#E5E0D6] overflow-hidden shadow-sm">
+          <div className="p-4 border-b border-[#E5E0D6] bg-[#F8F6F1] flex justify-between items-center">
+            <span className="text-xs font-bold text-[#1E1E1E] uppercase tracking-wider font-serif">
               Immutable MySQL System Audit Trail
             </span>
-            <span className="text-[11px] text-[#5C554B]">{auditLogs.length} events logged</span>
+            <span className="text-[11px] text-[#6F6A62] font-semibold">{auditLogs.length} events logged</span>
           </div>
 
-          <div className="divide-y divide-white/5 max-h-[500px] overflow-y-auto">
+          <div className="divide-y divide-[#E5E0D6] max-h-[500px] overflow-y-auto">
             {auditLogs.map((log) => (
-              <div key={log.id} className="p-4 text-xs hover:bg-[#FAF8F3] transition-colors flex items-start justify-between gap-4">
+              <div key={log.id} className="p-4 text-xs hover:bg-[#F8F6F1] transition-colors flex items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded bg-purple-950/40 text-purple-300 border border-purple-500/30 font-mono text-[10px] font-bold">
+                    <span className="px-2 py-0.5 rounded bg-[#243B35]/15 text-[#243B35] border border-[#243B35]/30 font-mono text-[10px] font-bold">
                       {log.action_type}
                     </span>
-                    <span className="font-semibold text-[#171513]">Entity: {log.entity_name} #{log.entity_id}</span>
+                    <span className="font-semibold text-[#1E1E1E]">Entity: {log.entity_name} #{log.entity_id}</span>
                   </div>
-                  <pre className="mt-2 text-[11px] font-mono text-[#5C554B] bg-white/60 p-2 rounded-lg max-w-xl overflow-x-auto">
+                  <pre className="mt-2 text-[11px] font-mono text-[#1E1E1E] bg-[#F8F6F1] border border-[#E5E0D6] p-2.5 rounded-xl max-w-xl overflow-x-auto">
                     {JSON.stringify(log.details, null, 2)}
                   </pre>
                 </div>
-                <div className="text-[10px] text-[#786F62] whitespace-nowrap">
+                <div className="text-[10px] text-[#6F6A62] whitespace-nowrap font-medium">
                   {new Date(log.created_at).toLocaleTimeString()}
                 </div>
               </div>
@@ -518,39 +532,39 @@ export default function AdminDashboard() {
       {activeTab === 'database' && (
         <div className="space-y-6">
           {/* Database System Header Card */}
-          <div className="glass-panel p-6 rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/30 via-space-900 to-purple-950/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="bg-white p-6 rounded-3xl border border-[#E5E0D6] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <Database className="w-5 h-5 text-cyan-400" />
-                <span className="text-lg font-black text-[#171513]">Database Catalog: booksphere_db</span>
-                <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-500/30">
+                <Database className="w-5 h-5 text-[#243B35]" />
+                <span className="text-lg font-black text-[#1E1E1E] font-serif">Database Catalog: booksphere_db</span>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#243B35]/10 text-[#243B35] font-mono text-xs font-bold border border-[#243B35]/20">
                   MySQL 8.0 / 3NF Normalization
                 </span>
               </div>
-              <p className="text-xs text-[#38342F] max-w-2xl leading-relaxed">
+              <p className="text-xs text-[#5E5A54] max-w-2xl leading-relaxed">
                 The database is organized into 25 normalized tables across Authentication, Catalog, Granular Inventory, Booking Engine, Financials, and Audit subsystems.
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="glass-panel px-3 py-2 rounded-xl text-center border border-[#E8DFD1]">
-                <div className="text-[10px] uppercase text-[#5C554B]">Total Tables</div>
-                <div className="text-base font-extrabold text-[#171513]">25</div>
+              <div className="bg-[#F8F6F1] px-3.5 py-2 rounded-xl text-center border border-[#E5E0D6]">
+                <div className="text-[10px] uppercase text-[#6F6A62] font-bold">Total Tables</div>
+                <div className="text-base font-extrabold text-[#1E1E1E]">25</div>
               </div>
-              <div className="glass-panel px-3 py-2 rounded-xl text-center border border-[#E8DFD1]">
-                <div className="text-[10px] uppercase text-[#5C554B]">Triggers</div>
-                <div className="text-base font-extrabold text-cyan-400">Active</div>
+              <div className="bg-[#F8F6F1] px-3.5 py-2 rounded-xl text-center border border-[#E5E0D6]">
+                <div className="text-[10px] uppercase text-[#6F6A62] font-bold">Triggers</div>
+                <div className="text-base font-extrabold text-[#B86B4B]">Active</div>
               </div>
-              <div className="glass-panel px-3 py-2 rounded-xl text-center border border-[#E8DFD1]">
-                <div className="text-[10px] uppercase text-[#5C554B]">ACID Mode</div>
-                <div className="text-base font-extrabold text-emerald-400">Strict</div>
+              <div className="bg-[#F8F6F1] px-3.5 py-2 rounded-xl text-center border border-[#E5E0D6]">
+                <div className="text-[10px] uppercase text-[#6F6A62] font-bold">ACID Mode</div>
+                <div className="text-base font-extrabold text-[#243B35]">Strict</div>
               </div>
             </div>
           </div>
 
           {/* Table Selector Grid */}
           <div>
-            <div className="text-xs font-bold uppercase tracking-wider text-[#5C554B] mb-3">
+            <div className="text-xs font-bold uppercase tracking-wider text-[#5E5A54] mb-3">
               Select Table to Inspect Schema & Live Rows:
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2.5">
@@ -562,13 +576,15 @@ export default function AdminDashboard() {
                     onClick={() => setSelectedTable(tbl)}
                     className={`p-3 rounded-2xl border text-left transition-all ${
                       isSelected
-                        ? 'bg-cyan-500/20 border-cyan-400 text-[#171513] shadow-glow-cyan'
-                        : 'glass-panel hover:bg-[#FAF8F3] border-[#E8DFD1] text-[#38342F]'
+                        ? 'bg-[#243B35] border-[#243B35] text-white shadow-sm'
+                        : 'bg-white hover:bg-[#F8F6F1] border-[#E5E0D6] text-[#1E1E1E] shadow-sm'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <Table className={`w-3.5 h-3.5 ${isSelected ? 'text-cyan-400' : 'text-[#786F62]'}`} />
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-[#38342F]">
+                      <Table className={`w-3.5 h-3.5 ${isSelected ? 'text-[#C9A96E]' : 'text-[#6F6A62]'}`} />
+                      <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-[#F8F6F1] text-[#6F6A62] border border-[#E5E0D6]'
+                      }`}>
                         {tbl.rowCount} rows
                       </span>
                     </div>
@@ -581,20 +597,20 @@ export default function AdminDashboard() {
 
           {/* Selected Table Detail View */}
           {selectedTable && (
-            <div className="glass-panel rounded-3xl border border-white/15 overflow-hidden space-y-6 p-6">
+            <div className="bg-white rounded-3xl border border-[#E5E0D6] shadow-sm overflow-hidden space-y-6 p-6">
               {/* Table Info Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E8DFD1] pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E0D6] pb-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-lg font-black text-[#171513] font-mono">TABLE: {selectedTable.name}</span>
-                    <span className="text-xs text-[#5C554B]">({selectedTable.rowCount} records)</span>
+                    <span className="text-lg font-black text-[#1E1E1E] font-mono">TABLE: {selectedTable.name}</span>
+                    <span className="text-xs text-[#6F6A62]">({selectedTable.rowCount} records)</span>
                   </div>
-                  <p className="text-xs text-[#5C554B] mt-0.5">{selectedTable.description}</p>
+                  <p className="text-xs text-[#5E5A54] mt-0.5">{selectedTable.description}</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-[#5C554B]">File location:</span>
-                  <code className="text-cyan-400 bg-white px-2 py-1 rounded border border-[#E8DFD1] font-mono text-[11px]">
+                  <span className="text-[#5E5A54]">File location:</span>
+                  <code className="text-[#B86B4B] bg-[#F8F6F1] px-2 py-1 rounded border border-[#E5E0D6] font-mono text-[11px] font-semibold">
                     database/schema.sql
                   </code>
                 </div>
@@ -602,15 +618,15 @@ export default function AdminDashboard() {
 
               {/* Columns / Schema Definitions */}
               <div>
-                <h4 className="text-xs font-bold text-[#171513] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Code className="w-3.5 h-3.5 text-cyan-400" />
+                <h4 className="text-xs font-bold text-[#1E1E1E] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <Code className="w-3.5 h-3.5 text-[#243B35]" />
                   Table Columns & Data Types:
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedTable.columns?.map((col, idx) => (
                     <span
                       key={idx}
-                      className="px-2.5 py-1 rounded-lg bg-[#FAF8F3] border border-[#E8DFD1] border border-[#E8DFD1] text-xs font-mono text-cyan-300"
+                      className="px-2.5 py-1 rounded-lg bg-[#F8F6F1] border border-[#E5E0D6] text-xs font-mono text-[#243B35] font-semibold"
                     >
                       {col}
                     </span>
@@ -620,14 +636,14 @@ export default function AdminDashboard() {
 
               {/* Live Table Rows Data Grid */}
               <div>
-                <h4 className="text-xs font-bold text-[#171513] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-[#1E1E1E] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <Table className="w-3.5 h-3.5 text-[#243B35]" />
                   Live Data Records in Database:
                 </h4>
 
-                <div className="overflow-x-auto rounded-2xl border border-[#E8DFD1] bg-white/60">
+                <div className="overflow-x-auto rounded-2xl border border-[#E5E0D6] bg-white">
                   <table className="w-full text-left text-xs">
-                    <thead className="bg-[#FAF8F3] border border-[#E8DFD1] text-[#5C554B] uppercase text-[10px] tracking-wider border-b border-[#E8DFD1]">
+                    <thead className="bg-[#F8F6F1] text-[#6F6A62] uppercase text-[10px] font-bold tracking-wider border-b border-[#E5E0D6]">
                       <tr>
                         {selectedTable.rows && selectedTable.rows[0] ? (
                           Object.keys(selectedTable.rows[0]).map((key) => (
@@ -638,12 +654,12 @@ export default function AdminDashboard() {
                         )}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5 font-mono text-[11px]">
+                    <tbody className="divide-y divide-[#E5E0D6] font-mono text-[11px]">
                       {selectedTable.rows && selectedTable.rows.length > 0 ? (
                         selectedTable.rows.map((row, rIdx) => (
-                          <tr key={rIdx} className="hover:bg-[#FAF8F3] transition-colors">
+                          <tr key={rIdx} className="hover:bg-[#F8F6F1]/80 transition-colors">
                             {Object.entries(row).map(([k, val], cIdx) => (
-                              <td key={cIdx} className="p-3 max-w-xs truncate text-slate-200">
+                              <td key={cIdx} className="p-3 max-w-xs truncate text-[#1E1E1E]">
                                 {typeof val === 'object' && val !== null
                                   ? JSON.stringify(val)
                                   : String(val)}
@@ -653,7 +669,7 @@ export default function AdminDashboard() {
                         ))
                       ) : (
                         <tr>
-                          <td className="p-4 text-center text-[#786F62]" colSpan={5}>
+                          <td className="p-4 text-center text-[#6F6A62]" colSpan={5}>
                             No active records in this table currently.
                           </td>
                         </tr>
@@ -689,67 +705,67 @@ export default function AdminDashboard() {
 
       {/* ADD SERVICE MODAL */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 backdrop-blur-md">
-          <form onSubmit={handleCreateService} className="glass-panel p-6 rounded-3xl border border-white/15 max-w-md w-full space-y-4">
-            <h3 className="text-base font-bold text-[#171513]">Add New Service to Database</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#171513]/60 backdrop-blur-sm">
+          <form onSubmit={handleCreateService} className="bg-white p-6 rounded-3xl border border-[#E5E0D6] shadow-xl max-w-md w-full space-y-4">
+            <h3 className="text-base font-bold text-[#1E1E1E] font-serif">Add New Service to Database</h3>
 
             <div>
-              <label className="text-[11px] text-[#5C554B] block mb-1">Service Title</label>
+              <label className="text-[11px] text-[#5E5A54] font-medium block mb-1">Service Title</label>
               <input
                 type="text"
                 required
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="e.g. Apex Tennis Arena"
-                className="w-full glass-input rounded-xl px-3 py-2 text-xs"
+                className="w-full bg-[#F8F6F1] border border-[#E5E0D6] text-[#1E1E1E] rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#B86B4B]"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
-                <label className="text-[11px] text-[#5C554B] block mb-1">Vertical</label>
+                <label className="text-[11px] text-[#5E5A54] font-medium block mb-1">Vertical</label>
                 <select
                   value={newType}
                   onChange={(e) => setNewType(e.target.value)}
-                  className="w-full glass-input rounded-xl px-3 py-2 text-xs"
+                  className="w-full bg-[#F8F6F1] border border-[#E5E0D6] text-[#1E1E1E] rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#B86B4B]"
                 >
-                  <option value="TRANSPORT" className="bg-[#FAF8F3] border border-[#E8DFD1]">Transport</option>
-                  <option value="ENTERTAINMENT" className="bg-[#FAF8F3] border border-[#E8DFD1]">Entertainment</option>
-                  <option value="SPORTS" className="bg-[#FAF8F3] border border-[#E8DFD1]">Sports</option>
-                  <option value="HOTEL" className="bg-[#FAF8F3] border border-[#E8DFD1]">Hotel</option>
-                  <option value="RESTAURANT" className="bg-[#FAF8F3] border border-[#E8DFD1]">Restaurant</option>
+                  <option value="TRANSPORT">Transport</option>
+                  <option value="ENTERTAINMENT">Entertainment</option>
+                  <option value="SPORTS">Sports</option>
+                  <option value="HOTEL">Hotel</option>
+                  <option value="RESTAURANT">Restaurant</option>
                 </select>
               </div>
 
               <div>
-                <label className="text-[11px] text-[#5C554B] block mb-1">City</label>
+                <label className="text-[11px] text-[#5E5A54] font-medium block mb-1">City</label>
                 <input
                   type="text"
                   value={newCity}
                   onChange={(e) => setNewCity(e.target.value)}
-                  className="w-full glass-input rounded-xl px-3 py-2 text-xs"
+                  className="w-full bg-[#F8F6F1] border border-[#E5E0D6] text-[#1E1E1E] rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#B86B4B]"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
-                <label className="text-[11px] text-[#5C554B] block mb-1">Base Price (₹)</label>
+                <label className="text-[11px] text-[#5E5A54] font-medium block mb-1">Base Price (₹)</label>
                 <input
                   type="number"
                   value={newPrice}
                   onChange={(e) => setNewPrice(e.target.value)}
-                  className="w-full glass-input rounded-xl px-3 py-2 text-xs font-mono"
+                  className="w-full bg-[#F8F6F1] border border-[#E5E0D6] text-[#1E1E1E] rounded-xl px-3 py-2 text-xs font-mono focus:outline-none focus:border-[#B86B4B]"
                 />
               </div>
               <div>
-                <label className="text-[11px] text-[#5C554B] block mb-1">Unit</label>
+                <label className="text-[11px] text-[#5E5A54] font-medium block mb-1">Unit</label>
                 <input
                   type="text"
                   value={newUnit}
                   onChange={(e) => setNewUnit(e.target.value)}
                   placeholder="per hour"
-                  className="w-full glass-input rounded-xl px-3 py-2 text-xs"
+                  className="w-full bg-[#F8F6F1] border border-[#E5E0D6] text-[#1E1E1E] rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#B86B4B]"
                 />
               </div>
             </div>
@@ -758,13 +774,13 @@ export default function AdminDashboard() {
               <button
                 type="button"
                 onClick={() => setShowAddModal(false)}
-                className="flex-1 py-2 rounded-xl text-xs font-semibold glass-panel text-[#38342F]"
+                className="flex-1 py-2 rounded-xl text-xs font-semibold bg-white text-[#5E5A54] hover:bg-[#F8F6F1] border border-[#E5E0D6] transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="flex-1 glow-button py-2 rounded-xl text-xs font-bold text-[#171513] shadow-glow-cyan"
+                className="flex-1 py-2 rounded-xl text-xs font-bold bg-[#243B35] hover:bg-[#1B2D29] text-white transition-colors shadow-sm"
               >
                 Publish Service
               </button>
