@@ -65,7 +65,7 @@ export default function Navbar({
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-espresso/95 backdrop-blur-xl border-b border-sand-500/15 shadow-warm py-3 transition-all">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-sand-300/60 shadow-sm py-3 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <div
@@ -88,7 +88,7 @@ export default function Navbar({
         </div>
 
         {/* Streamlined Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 bg-charcoal/90 border border-sand-500/20 px-2 py-1 rounded-full backdrop-blur-md">
+        <div className="hidden lg:flex items-center gap-1 bg-sand-200/50 border border-sand-300/70 px-2 py-1 rounded-full backdrop-blur-md">
           {/* Home */}
           <button
             onClick={() => {
@@ -97,8 +97,8 @@ export default function Navbar({
             }}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
               activeView === 'home'
-                ? 'text-warmwhite bg-surface border border-gold-500/30 shadow-warm'
-                : 'text-sand-200/80 hover:text-warmwhite hover:bg-white/5'
+                ? 'text-espresso bg-white border border-sand-400/80 shadow-sm font-bold'
+                : 'text-charcoal/80 hover:text-espresso hover:bg-white/60'
             }`}
           >
             Home
@@ -108,7 +108,7 @@ export default function Navbar({
           <div className="relative" ref={categoriesRef}>
             <button
               onClick={() => setShowCategoriesMenu(!showCategoriesMenu)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-sand-200/80 hover:text-warmwhite hover:bg-white/5 transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-charcoal/80 hover:text-espresso hover:bg-white/60 transition-all"
             >
               <span>Categories</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showCategoriesMenu ? 'rotate-180 text-gold-400' : ''}`} />
@@ -148,8 +148,8 @@ export default function Navbar({
             onClick={() => setActiveView('my-bookings')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all relative flex items-center gap-1.5 ${
               activeView === 'my-bookings'
-                ? 'text-warmwhite bg-surface border border-gold-500/30 shadow-warm'
-                : 'text-sand-200/80 hover:text-warmwhite hover:bg-white/5'
+                ? 'text-espresso bg-white border border-sand-400/80 shadow-sm font-bold'
+                : 'text-charcoal/80 hover:text-espresso hover:bg-white/60'
             }`}
           >
             <span>My Bookings</span>
@@ -272,7 +272,7 @@ export default function Navbar({
           </div>
 
           {/* Quick Demo Role Switcher Pill */}
-          <div className="flex items-center bg-charcoal border border-sand-500/20 rounded-full p-0.5 text-[11px] shadow-sm">
+          <div className="flex items-center bg-sand-200/60 border border-sand-300/80 rounded-full p-0.5 text-[11px] shadow-sm">
             <button
               onClick={handleSwitchToCustomer}
               className={`px-3 py-1 rounded-full transition-all font-semibold ${

@@ -18,7 +18,7 @@ export default function DiscoverExperiences({ services = [], onBookNow }) {
   };
 
   return (
-    <section className="py-16 bg-charcoal text-sand-100 border-b border-sand-500/15"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-[#FAF8F3] text-espresso border-b border-sand-300/50"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -26,7 +26,7 @@ export default function DiscoverExperiences({ services = [], onBookNow }) {
             <Sparkles className="w-3.5 h-3.5" />
             Curated Collections
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-warmwhite mt-1 font-serif">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-espresso mt-1 font-serif">
             Discover Something New
           </h2>
         </div>
@@ -35,13 +35,13 @@ export default function DiscoverExperiences({ services = [], onBookNow }) {
         <div className="flex items-center gap-2">
           <button
             onClick={() => scroll('left')}
-            className="p-2 rounded-xl bg-surface border border-sand-500/20 text-sand-300 hover:text-warmwhite hover:border-gold-400 transition-all"
+            className="p-2 rounded-xl bg-white border border-sand-300 text-charcoal hover:text-espresso hover:border-terracotta transition-all"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={() => scroll('right')}
-            className="p-2 rounded-xl bg-surface border border-sand-500/20 text-sand-300 hover:text-warmwhite hover:border-gold-400 transition-all"
+            className="p-2 rounded-xl bg-white border border-sand-300 text-charcoal hover:text-espresso hover:border-terracotta transition-all"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
@@ -56,7 +56,7 @@ export default function DiscoverExperiences({ services = [], onBookNow }) {
         {services.map((s) => (
           <div
             key={s.id}
-            className="min-w-[290px] sm:min-w-[340px] max-w-[340px] snap-start bg-surface rounded-2xl overflow-hidden border border-sand-500/20 group hover:border-gold-500/40 hover:shadow-warm transition-all duration-300 flex flex-col justify-between"
+            className="min-w-[290px] sm:min-w-[340px] max-w-[340px] snap-start bg-white rounded-2xl overflow-hidden border border-sand-300/80 shadow-sm group hover:border-sand-400 hover:shadow-warm transition-all duration-300 flex flex-col justify-between"
           >
             {/* Image Container */}
             <div className="relative h-48 w-full overflow-hidden bg-space-900">
@@ -65,7 +65,7 @@ export default function DiscoverExperiences({ services = [], onBookNow }) {
                 alt={s.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-transparent to-transparent opacity-90" />
 
               {/* Category Badge */}
               <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-charcoal/90 backdrop-blur-md text-gold-300 border border-gold-500/30">
@@ -93,19 +93,19 @@ export default function DiscoverExperiences({ services = [], onBookNow }) {
                   <span>{s.rating}</span>
                   <span className="text-slate-500 font-normal">({s.review_count} reviews)</span>
                 </div>
-                <h3 className="text-sm font-bold text-white group-hover:text-gold-300 transition-colors line-clamp-1">
+                <h3 className="text-sm font-bold text-espresso group-hover:text-terracotta transition-colors line-clamp-1">
                   {s.title}
                 </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1 leading-relaxed">
+                <p className="text-xs text-charcoal/70 line-clamp-2 mt-1 leading-relaxed">
                   {s.tagline || s.description}
                 </p>
               </div>
 
               {/* Price & Action */}
-              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+              <div className="mt-4 pt-3 border-t border-sand-300/60 flex items-center justify-between">
                 <div>
                   <div className="text-[10px] text-slate-400 uppercase tracking-wider">Starting from</div>
-                  <div className="text-base font-extrabold text-white">
+                  <div className="text-base font-extrabold text-espresso">
                     {formatPrice(s.base_price)}
                     <span className="text-[11px] font-normal text-slate-400 ml-1">/{s.price_unit.replace('per ', '')}</span>
                   </div>

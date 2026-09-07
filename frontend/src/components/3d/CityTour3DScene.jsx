@@ -721,10 +721,10 @@ export default function CityTour3DScene({ speed = 1.0, isDriving = true, cameraM
       gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
       className="cursor-grab active:cursor-grabbing w-full h-full"
     >
-      <ambientLight intensity={0.85} />
-      <directionalLight position={[20, 25, 15]} intensity={1.7} color="#F5EAD2" />
-      <directionalLight position={[-20, 15, -15]} intensity={0.95} color="#D8C7AD" />
-      <fog attach="fog" args={['#171513', 30, 110]} />
+      <ambientLight intensity={1.1} />
+      <directionalLight position={[20, 25, 15]} intensity={2.2} color="#FFFDF7" />
+      <directionalLight position={[-20, 15, -15]} intensity={1.3} color="#F7EEDD" />
+      <fog attach="fog" args={['#EDE8DF', 28, 100]} />
 
       <RealisticLuxuryBus speed={speed} isDriving={isDriving} />
       <HighwayWorld speed={speed} isDriving={isDriving} onLandmarkDetected={onLandmarkChange} />

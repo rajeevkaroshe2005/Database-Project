@@ -50,11 +50,11 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
   };
 
   return (
-    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-sand/15 shadow-2xl bg-gradient-to-b from-espresso via-charcoal to-espresso select-none">
+    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-sand/15 shadow-2xl bg-gradient-to-b from-[#FAF8F3] via-[#F3EFE6] to-[#EAE4D8] border border-sand-300 shadow-luxury select-none">
       {/* Top HUD Controls Overlay */}
       <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2 pointer-events-auto">
         {/* Live Status Badge */}
-        <div className="glass-panel px-3.5 py-1.5 rounded-full border border-gold/30 text-xs font-mono text-ivory flex items-center gap-2 shadow-warm backdrop-blur-md">
+        <div className="bg-white/90 px-3.5 py-1.5 rounded-full border border-sand-300 text-xs font-mono text-charcoal flex items-center gap-2 shadow-sm backdrop-blur-md">
           <span className="w-2.5 h-2.5 rounded-full bg-terracotta animate-pulse" />
           <span className="font-bold text-xs uppercase tracking-wider text-gold">
             BookSphere Express 3D
@@ -64,7 +64,7 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
         </div>
 
         {/* Quick Controls: Speed, Camera & Play/Pause */}
-        <div className="flex items-center gap-1.5 glass-panel p-1 rounded-2xl border border-sand/15 backdrop-blur-md">
+        <div className="flex items-center gap-1.5 bg-white/90 p-1 rounded-2xl border border-sand-300 shadow-sm backdrop-blur-md">
           {/* Speed Preset Button */}
           <button
             onClick={() => {
@@ -72,7 +72,7 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
               else if (speedLevel === 'express') setSpeedLevel('turbo');
               else setSpeedLevel('cruise');
             }}
-            className="px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold bg-white/5 text-sand border border-white/10 hover:border-gold/40 transition-all flex items-center gap-1"
+            className="px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold bg-sand-100 text-charcoal border border-sand-300 hover:border-terracotta transition-all flex items-center gap-1"
             title="Toggle Highway Speed"
           >
             <Gauge className="w-3 h-3 text-gold" />
@@ -85,7 +85,7 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
             className={"px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 " +
               (cameraMode === 'orbit'
                 ? "bg-gold/20 text-gold border-gold/40 shadow-warm"
-                : "bg-white/5 text-slate-300 border-white/10 hover:text-ivory")}
+                : "bg-sand-100 text-charcoal border border-sand-300 hover:text-espresso")}
             title="Toggle between Chase Camera and Free 3D Orbit"
           >
             <Camera className="w-3 h-3 text-gold" />
@@ -118,22 +118,22 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
 
       {/* Bottom Milestone Card: Shows landmark the bus is passing right now */}
       {currentLandmark && (
-        <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-auto sm:max-w-md z-20 glass-panel p-4 rounded-2xl border border-sand/20 bg-charcoal/90 backdrop-blur-md shadow-luxury animate-in fade-in space-y-2.5 pointer-events-auto">
+        <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-auto sm:max-w-md z-20 bg-white/95 p-4 rounded-2xl border border-sand-300 shadow-luxury backdrop-blur-md animate-in fade-in space-y-2.5 pointer-events-auto">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-surface text-gold border border-gold/30">
+              <div className="p-2 rounded-xl bg-sand-100 text-terracotta border border-sand-300">
                 {getLandmarkIcon(currentLandmark.category)}
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-gold font-bold block leading-none">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-terracotta font-bold block leading-none">
                     Now Passing:
                   </span>
-                  <span className="px-1.5 py-0.5 rounded bg-surface text-sand text-[9px] font-mono font-bold border border-sand/15">
+                  <span className="px-1.5 py-0.5 rounded bg-sand-100 text-charcoal text-[9px] font-mono font-bold border border-sand-300">
                     {currentLandmark.category}
                   </span>
                 </div>
-                <h4 className="text-xs sm:text-sm font-bold text-ivory mt-0.5 truncate max-w-[220px]">
+                <h4 className="text-xs sm:text-sm font-bold text-espresso mt-0.5 truncate max-w-[220px]">
                   {currentLandmark.title}
                 </h4>
               </div>
@@ -144,8 +144,8 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
             </span>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-sand/10 text-xs">
-            <span className="text-sand/70 flex items-center gap-1.5 font-mono text-[11px]">
+          <div className="flex items-center justify-between pt-2 border-t border-sand-200 text-xs">
+            <span className="text-charcoal/70 flex items-center gap-1.5 font-mono text-[11px]">
               <MapPin className="w-3.5 h-3.5 text-gold" />
               {currentLandmark.city} • Verified Available
             </span>
@@ -169,7 +169,7 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
       )}
 
       {/* Subtle Bottom Right Hint */}
-      <div className="absolute bottom-2.5 right-3 text-[10px] text-slate-400 font-mono hidden md:flex items-center gap-1.5 pointer-events-none bg-space-950/60 px-2 py-1 rounded-lg border border-white/5">
+      <div className="absolute bottom-2.5 right-3 text-[10px] text-slate-400 font-mono hidden md:flex items-center gap-1.5 pointer-events-none bg-white/80 px-2 py-1 rounded-lg border border-sand-300 text-charcoal/60">
         <span>Click & drag to rotate 3D world</span>
         <span>•</span>
         <span>Scroll to zoom</span>

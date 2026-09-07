@@ -13,7 +13,7 @@ export default function MembershipTiers({ onBookNow }) {
       discount: 'Standard',
       multiplier: '1.0x',
       badge: 'Starter',
-      color: 'border-slate-700 bg-slate-900/40 text-slate-300',
+      color: 'border-sand-300 bg-white text-charcoal shadow-sm',
       perks: [
         'Standard unified booking access',
         'Earn 1 point per ₹100 spent',
@@ -26,7 +26,7 @@ export default function MembershipTiers({ onBookNow }) {
       discount: '5% Flat Discount',
       multiplier: '1.25x',
       badge: 'Silver',
-      color: 'border-blue-500/40 bg-blue-950/20 text-blue-300',
+      color: 'border-sand-400 bg-white text-charcoal shadow-sm',
       perks: [
         '5% off select transport & cinema',
         '1.25x reward points multiplier',
@@ -39,7 +39,7 @@ export default function MembershipTiers({ onBookNow }) {
       discount: '10% Instant Off',
       multiplier: '1.5x',
       badge: 'Popular',
-      color: 'border-amber-500/50 bg-amber-950/25 text-amber-300 shadow-glow-purple',
+      color: 'border-gold-500/50 bg-white text-charcoal shadow-warm',
       perks: [
         '10% off across all verticals',
         '1.5x reward points multiplier',
@@ -53,7 +53,7 @@ export default function MembershipTiers({ onBookNow }) {
       discount: '15% VIP Discount',
       multiplier: '2.0x',
       badge: 'VIP Elite',
-      color: 'border-purple-500/60 bg-purple-950/30 text-purple-300 shadow-glow-purple',
+      color: 'border-terracotta/50 bg-white text-charcoal shadow-warm',
       perks: [
         '15% flat off everything',
         '2.0x double reward points',
@@ -68,30 +68,30 @@ export default function MembershipTiers({ onBookNow }) {
   const progressPercent = Math.min(100, Math.round((currentPoints / nextTierPoints) * 100));
 
   return (
-    <section className="py-16 bg-surface text-warmwhite border-b border-sand-500/15"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-[#FAF8F3] text-espresso border-b border-sand-300/50"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
         <span className="text-xs font-bold uppercase tracking-widest text-gold-400 flex items-center justify-center gap-1.5">
           <Crown className="w-4 h-4 text-amber-400" />
           Loyalty & Privileges
         </span>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-warmwhite mt-1 font-serif">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-espresso mt-1 font-serif">
           Unlock Tiered Elite Status
         </h2>
-        <p className="text-sm text-sand-300 mt-2">
+        <p className="text-sm text-charcoal/70 mt-2">
           Earn 1 point for every ₹100 spent. Redeem points directly against payments for instant discounts.
         </p>
 
         {/* User Current Tier Status Card */}
         {user && (
-          <div className="mt-6 inline-flex flex-col sm:flex-row items-center gap-4 bg-charcoal px-6 py-3.5 rounded-2xl border border-gold-500/30 shadow-warm text-left">
+          <div className="mt-6 inline-flex flex-col sm:flex-row items-center gap-4 bg-white px-6 py-3.5 rounded-2xl border border-sand-300 shadow-sm text-left">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
                 <Award className="w-5 h-5 text-amber-400" />
               </div>
               <div>
                 <div className="text-[10px] uppercase font-bold text-sand-300 tracking-wider">Your Balance</div>
-                <div className="text-lg font-extrabold text-white flex items-center gap-1.5">
+                <div className="text-lg font-extrabold text-espresso flex items-center gap-1.5">
                   <span>{currentPoints} Points</span>
                   <span className="text-xs font-normal text-amber-300">({user.membership?.tierName})</span>
                 </div>
@@ -140,11 +140,11 @@ export default function MembershipTiers({ onBookNow }) {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-extrabold text-white">{t.name}</h3>
+                <h3 className="text-lg font-extrabold text-espresso">{t.name}</h3>
 
                 <div className="mt-3 py-2 border-y border-white/10 flex items-center justify-between text-xs">
                   <span className="text-sand-300">Discount:</span>
-                  <span className="font-bold text-white">{t.discount}</span>
+                  <span className="font-bold text-espresso">{t.discount}</span>
                 </div>
 
                 <div className="py-2 border-b border-white/10 flex items-center justify-between text-xs mb-4">
@@ -152,7 +152,7 @@ export default function MembershipTiers({ onBookNow }) {
                   <span className="font-bold text-gold-400">{t.multiplier}</span>
                 </div>
 
-                <ul className="space-y-2 text-xs text-slate-300">
+                <ul className="space-y-2 text-xs text-charcoal/80">
                   {t.perks.map((p, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Check className="w-3.5 h-3.5 text-gold-400 mt-0.5 shrink-0" />
@@ -165,7 +165,7 @@ export default function MembershipTiers({ onBookNow }) {
               <div className="mt-6 pt-4">
                 <button
                   onClick={() => onBookNow && onBookNow()}
-                  className="w-full py-2 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/20 text-white transition-colors flex items-center justify-center gap-1.5"
+                  className="w-full py-2 rounded-xl text-xs font-semibold bg-sand-200/60 hover:bg-sand-300/60 text-espresso font-semibold transition-colors flex items-center justify-center gap-1.5"
                 >
                   <span>Book & Earn Points</span>
                   <ArrowRight className="w-3 h-3" />

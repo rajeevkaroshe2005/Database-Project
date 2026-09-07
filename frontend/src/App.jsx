@@ -92,7 +92,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-espresso text-warmwhite flex flex-col justify-between selection:bg-terracotta/30 selection:text-terracotta">
+    <div className="min-h-screen bg-[#FAF8F3] text-espresso flex flex-col justify-between selection:bg-terracotta/20 selection:text-terracotta">
       {/* Navigation */}
       <Navbar
         activeView={activeView}
