@@ -35,28 +35,28 @@ function RealisticLuxuryBus({ speed, isDriving }) {
         <meshStandardMaterial color="#0f172a" roughness={0.6} metalness={0.7} />
       </mesh>
 
-      {/* --- MAIN COACH BODY (Metallic Sapphire Blue Finish) --- */}
+      {/* --- MAIN COACH BODY (Metallic Midnight Charcoal Luxury Finish) --- */}
       <RoundedBox args={[1.7, 1.45, 5.6]} radius={0.16} smoothness={5} position={[0, 0.85, 0]}>
         <meshStandardMaterial
-          color="#0369a1"
+          color="#1F1D19"
           metalness={0.88}
-          roughness={0.18}
+          roughness={0.2}
           envMapIntensity={1.5}
         />
       </RoundedBox>
 
-      {/* Modern Silver Aerodynamic Accent Stripe */}
+      {/* Modern Muted Gold Aerodynamic Accent Stripe */}
       <mesh position={[0, 0.52, 0]}>
         <boxGeometry args={[1.73, 0.08, 5.4]} />
-        <meshStandardMaterial color="#e2e8f0" metalness={0.95} roughness={0.1} />
+        <meshStandardMaterial color="#C9A96E" metalness={0.92} roughness={0.15} />
       </mesh>
 
-      {/* Cyan Neon Underglow Stripe */}
+      {/* Warm Amber Highway Ground Lighting */}
       <mesh position={[0, 0.12, 0]}>
         <boxGeometry args={[1.72, 0.04, 5.2]} />
-        <meshStandardMaterial color="#00f2fe" emissive="#00f2fe" emissiveIntensity={2.5} />
+        <meshStandardMaterial color="#C9A96E" emissive="#C9A96E" emissiveIntensity={1.2} />
       </mesh>
-      <pointLight position={[0, 0.1, 0]} intensity={1.5} distance={3} color="#00f2fe" />
+      <pointLight position={[0, 0.1, 0]} intensity={1.1} distance={3} color="#E6A756" />
 
       {/* --- ROOF STRUCTURE & CLIMATE CONTROL UNIT --- */}
       <RoundedBox args={[1.62, 0.18, 5.4]} radius={0.08} smoothness={4} position={[0, 1.62, 0]}>
@@ -89,18 +89,18 @@ function RealisticLuxuryBus({ speed, isDriving }) {
       {/* Digital Destination Board above Windshield */}
       <mesh position={[0, 1.52, 2.68]}>
         <boxGeometry args={[1.2, 0.18, 0.06]} />
-        <meshStandardMaterial color="#0284c7" emissive="#00f2fe" emissiveIntensity={2.2} />
+        <meshStandardMaterial color="#171513" emissive="#C9A96E" emissiveIntensity={1.6} />
       </mesh>
 
       {/* Front Chrome Radiator Grille */}
       <mesh position={[0, 0.42, 2.82]}>
         <boxGeometry args={[1.2, 0.32, 0.06]} />
-        <meshStandardMaterial color="#94a3b8" metalness={0.95} roughness={0.1} />
+        <meshStandardMaterial color="#C9A96E" metalness={0.92} roughness={0.15} />
       </mesh>
       {/* Front Brand Emblem */}
       <mesh position={[0, 0.48, 2.86]}>
         <cylinderGeometry args={[0.08, 0.08, 0.04, 16]} rotation={[Math.PI / 2, 0, 0]} />
-        <meshStandardMaterial color="#38bdf8" emissive="#00f2fe" emissiveIntensity={2} />
+        <meshStandardMaterial color="#C9A96E" emissive="#C9A96E" emissiveIntensity={1.8} />
       </mesh>
 
       {/* High-Tech Projector LED Headlamps (Left & Right) */}
@@ -721,10 +721,10 @@ export default function CityTour3DScene({ speed = 1.0, isDriving = true, cameraM
       gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
       className="cursor-grab active:cursor-grabbing w-full h-full"
     >
-      <ambientLight intensity={0.9} />
-      <directionalLight position={[20, 25, 15]} intensity={1.8} color="#93c5fd" />
-      <directionalLight position={[-20, 15, -15]} intensity={1.1} color="#c084fc" />
-      <fog attach="fog" args={['#030712', 30, 110]} />
+      <ambientLight intensity={0.85} />
+      <directionalLight position={[20, 25, 15]} intensity={1.7} color="#F5EAD2" />
+      <directionalLight position={[-20, 15, -15]} intensity={0.95} color="#D8C7AD" />
+      <fog attach="fog" args={['#171513', 30, 110]} />
 
       <RealisticLuxuryBus speed={speed} isDriving={isDriving} />
       <HighwayWorld speed={speed} isDriving={isDriving} onLandmarkDetected={onLandmarkChange} />

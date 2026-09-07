@@ -20,87 +20,87 @@ import {
 
 export default function CategoryCards({ onSelectCategory, activeCategory }) {
   const categories = [
-    // Transport
-    { id: 'flight', name: 'FLIGHT', group: 'Transport', icon: Plane, color: 'from-cyan-500 to-blue-600', count: '18 Routes' },
-    { id: 'train', name: 'TRAIN', group: 'Transport', icon: Train, color: 'from-blue-600 to-indigo-600', count: 'Vande Bharat' },
-    { id: 'bus', name: 'BUS', group: 'Transport', icon: Bus, color: 'from-indigo-600 to-purple-600', count: 'AC Sleeper' },
-    { id: 'cab', name: 'CAB', group: 'Transport', icon: Car, color: 'from-purple-600 to-pink-600', count: 'Chauffeur' },
+    // Transport (Forest Green theme)
+    { id: 'flight', name: 'FLIGHT', group: 'Transport', icon: Plane, color: 'bg-forest/15 text-forest border border-forest/30', count: '18 Routes' },
+    { id: 'train', name: 'TRAIN', group: 'Transport', icon: Train, color: 'bg-forest/15 text-forest border border-forest/30', count: 'Vande Bharat' },
+    { id: 'bus', name: 'BUS', group: 'Transport', icon: Bus, color: 'bg-forest/15 text-forest border border-forest/30', count: 'AC Sleeper' },
+    { id: 'cab', name: 'CAB', group: 'Transport', icon: Car, color: 'bg-forest/15 text-forest border border-forest/30', count: 'Chauffeur' },
 
-    // Entertainment
-    { id: 'movie', name: 'MOVIE', group: 'Entertainment', icon: Film, color: 'from-rose-500 to-red-600', count: 'IMAX 4K' },
-    { id: 'comedy', name: 'COMEDY', group: 'Entertainment', icon: Mic, color: 'from-amber-500 to-orange-600', count: 'Standup Live' },
-    { id: 'concert', name: 'CONCERT', group: 'Entertainment', icon: Music, color: 'from-purple-500 to-indigo-600', count: 'Stadium Tour' },
-    { id: 'theatre', name: 'THEATRE', group: 'Entertainment', icon: Drama, color: 'from-fuchsia-500 to-purple-600', count: 'Musical Plays' },
+    // Entertainment (Terracotta theme)
+    { id: 'movie', name: 'MOVIE', group: 'Entertainment', icon: Film, color: 'bg-terracotta/15 text-terracotta border border-terracotta/30', count: 'IMAX 4K' },
+    { id: 'comedy', name: 'COMEDY', group: 'Entertainment', icon: Mic, color: 'bg-terracotta/15 text-terracotta border border-terracotta/30', count: 'Standup Live' },
+    { id: 'concert', name: 'CONCERT', group: 'Entertainment', icon: Music, color: 'bg-terracotta/15 text-terracotta border border-terracotta/30', count: 'Stadium Tour' },
+    { id: 'theatre', name: 'THEATRE', group: 'Entertainment', icon: Drama, color: 'bg-terracotta/15 text-terracotta border border-terracotta/30', count: 'Musical Plays' },
 
-    // Sports
-    { id: 'turf', name: 'TURF', group: 'Sports', icon: Trophy, color: 'from-emerald-500 to-teal-600', count: 'FIFA 7v7' },
-    { id: 'pool', name: 'POOL', group: 'Sports', icon: Waves, color: 'from-teal-500 to-cyan-600', count: '50m Heated' },
-    { id: 'ground', name: 'GROUND', group: 'Sports', icon: Shield, color: 'from-lime-500 to-emerald-600', count: 'Cricket Arena' },
-    { id: 'court', name: 'COURT', group: 'Sports', icon: Activity, color: 'from-sky-500 to-blue-600', count: 'Badminton / Tennis' },
+    // Sports (Forest Green theme)
+    { id: 'turf', name: 'TURF', group: 'Sports', icon: Trophy, color: 'bg-forest/15 text-forest border border-forest/30', count: 'FIFA 7v7' },
+    { id: 'pool', name: 'POOL', group: 'Sports', icon: Waves, color: 'bg-forest/15 text-forest border border-forest/30', count: '50m Heated' },
+    { id: 'ground', name: 'GROUND', group: 'Sports', icon: Shield, color: 'bg-forest/15 text-forest border border-forest/30', count: 'Cricket Arena' },
+    { id: 'court', name: 'COURT', group: 'Sports', icon: Activity, color: 'bg-forest/15 text-forest border border-forest/30', count: 'Badminton / Tennis' },
 
-    // Hospitality & Experiences
-    { id: 'hotel', name: 'HOTEL', group: 'Hospitality', icon: Building, color: 'from-amber-500 to-yellow-600', count: 'Private Villa' },
-    { id: 'restaurant', name: 'RESTAURANT', group: 'Dining', icon: Utensils, color: 'from-orange-500 to-amber-600', count: 'Sky Lounge' },
-    { id: 'themepark', name: 'THEME PARK', group: 'Experience', icon: Sparkles, color: 'from-violet-500 to-purple-600', count: 'Thrill Parks' },
+    // Hospitality & Dining (Muted Gold theme)
+    { id: 'hotel', name: 'HOTEL', group: 'Hospitality', icon: Building, color: 'bg-gold-500/20 text-gold-700 border border-gold-500/40', count: 'Private Villa' },
+    { id: 'restaurant', name: 'RESTAURANT', group: 'Dining', icon: Utensils, color: 'bg-gold-500/20 text-gold-700 border border-gold-500/40', count: 'Sky Lounge' },
+    { id: 'themepark', name: 'THEME PARK', group: 'Experience', icon: Sparkles, color: 'bg-terracotta/15 text-terracotta border border-terracotta/30', count: 'Thrill Parks' },
   ];
 
   return (
-    <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-            Unified Booking Directory
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-            Explore 15 Verticals. One System.
-          </h2>
+    <section className="py-16 bg-ivory text-espresso border-y border-sand-300/40 transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-terracotta">
+              Unified Booking Directory
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-espresso mt-1 font-serif">
+              Explore 15 Verticals. One System.
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-charcoal/70 max-w-md font-sans">
+            Seamlessly book any seat, hourly sports slot, private villa, or rooftop dining table through a single unified engine.
+          </p>
         </div>
-        <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-          Seamlessly book any seat, hourly sports slot, private villa, or rooftop dining table through a single unified engine.
-        </p>
-      </div>
 
-      {/* Grid with 3D Hover Tilt effect */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
-        {categories.map((cat) => {
-          const Icon = cat.icon;
-          const isSelected = activeCategory === cat.id;
+        {/* Grid of Editorial Category Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
+          {categories.map((cat) => {
+            const Icon = cat.icon;
+            const isSelected = activeCategory === cat.id;
 
-          return (
-            <div
-              key={cat.id}
-              onClick={() => onSelectCategory(cat.id)}
-              className={`group relative p-4 rounded-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1.5 ${
-                isSelected
-                  ? 'bg-space-850 border-2 border-cyan-400 shadow-glow-cyan'
-                  : 'glass-panel hover:border-cyan-500/40 hover:shadow-glow-cyan'
-              }`}
-            >
-              {/* Glow Accent Top Right */}
-              <div className="absolute top-3 right-3 text-slate-500 group-hover:text-cyan-400 transition-colors">
-                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
+            return (
+              <div
+                key={cat.id}
+                onClick={() => onSelectCategory(cat.id)}
+                className={`group relative p-4 sm:p-5 rounded-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1 ${
+                  isSelected
+                    ? 'bg-warmwhite border-2 border-terracotta shadow-terracotta'
+                    : 'bg-warmwhite border border-sand-300/80 shadow-sm hover:shadow-warm hover:border-sand-400'
+                }`}
+              >
+                {/* Arrow Top Right */}
+                <div className="absolute top-3.5 right-3.5 text-sand-400 group-hover:text-terracotta transition-colors">
+                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
 
-              {/* Icon Container with glowing gradient background */}
-              <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${cat.color} p-0.5 shadow-md group-hover:scale-110 transition-transform mb-3`}>
-                <div className="w-full h-full bg-space-950/80 rounded-[10px] flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-white" />
+                {/* Icon Container with refined tone */}
+                <div className={`w-11 h-11 rounded-xl p-2 flex items-center justify-center mb-3 transition-transform group-hover:scale-105 ${cat.color}`}>
+                  <Icon className="w-5 h-5" />
+                </div>
+
+                {/* Category Info */}
+                <div className="text-[10px] text-sand-500 uppercase tracking-wider font-bold">
+                  {cat.group}
+                </div>
+                <div className="text-sm font-bold text-espresso group-hover:text-terracotta transition-colors mt-0.5 font-serif">
+                  {cat.name}
+                </div>
+                <div className="text-[11px] text-charcoal/60 mt-1 font-sans">
+                  {cat.count}
                 </div>
               </div>
-
-              {/* Category Info */}
-              <div className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
-                {cat.group}
-              </div>
-              <div className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors mt-0.5">
-                {cat.name}
-              </div>
-              <div className="text-[11px] text-slate-400 mt-1">
-                {cat.count}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </section>
   );

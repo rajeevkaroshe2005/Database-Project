@@ -73,20 +73,20 @@ export default function SphereBot({ onSelectService, services = [] }) {
       {/* Floating Glowing Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 text-white shadow-glow-cyan hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
+        className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-gradient-to-tr from-charcoal via-surface to-terracotta text-warmwhite border border-gold-500/40 shadow-luxury hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
         title="Chat with SphereBot AI Concierge"
       >
         <Bot className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-        <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-300 animate-ping" />
+        <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-gold-400 animate-ping" />
       </button>
 
       {/* Floating Glass Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[92vw] sm:w-96 glass-panel rounded-3xl border border-cyan-500/40 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
+        <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[92vw] sm:w-96 glass-panel rounded-3xl border border-sand-500/20 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
           {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-cyan-950/80 to-purple-950/80 border-b border-white/10 flex items-center justify-between">
+          <div className="p-4 bg-gradient-to-r from-espresso via-charcoal to-espresso border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300">
+              <div className="w-8 h-8 rounded-xl bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-300">
                 <Bot className="w-4 h-4" />
               </div>
               <div>
@@ -116,8 +116,8 @@ export default function SphereBot({ onSelectService, services = [] }) {
                 <div
                   className={`p-3 rounded-2xl max-w-[85%] leading-relaxed whitespace-pre-line ${
                     m.sender === 'user'
-                      ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-tr-none shadow-glow-cyan'
-                      : 'bg-white/10 border border-white/10 text-slate-200 rounded-tl-none'
+                      ? 'bg-terracotta text-white rounded-tr-none shadow-terracotta'
+                      : 'bg-surface/90 border border-sand-500/20 text-warmwhite rounded-tl-none'
                   }`}
                 >
                   {m.text}
@@ -130,7 +130,7 @@ export default function SphereBot({ onSelectService, services = [] }) {
                       onSelectService(m.service);
                       setIsOpen(false);
                     }}
-                    className="mt-2 glass-panel p-2.5 rounded-xl border border-cyan-500/40 hover:border-cyan-300 cursor-pointer flex items-center gap-2.5 text-left max-w-[85%]"
+                    className="mt-2 glass-panel p-2.5 rounded-xl border border-sand-500/20 hover:border-cyan-300 cursor-pointer flex items-center gap-2.5 text-left max-w-[85%]"
                   >
                     <img
                       src={m.service.cover_image}
@@ -140,11 +140,11 @@ export default function SphereBot({ onSelectService, services = [] }) {
                       <div className="font-bold text-white text-xs truncate">
                         {m.service.title}
                       </div>
-                      <div className="text-[10px] text-cyan-300">
+                      <div className="text-[10px] text-gold-300">
                         ₹{m.service.base_price.toLocaleString('en-IN')} • Tap to Book
                       </div>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 shrink-0" />
                   </div>
                 )}
               </div>
@@ -158,7 +158,7 @@ export default function SphereBot({ onSelectService, services = [] }) {
               <button
                 key={i}
                 onClick={() => handleSend(chip)}
-                className="px-2.5 py-1 rounded-full text-[10px] whitespace-nowrap bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/5 hover:border-cyan-500/30 transition-colors"
+                className="px-2.5 py-1 rounded-full text-[10px] whitespace-nowrap bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-gold-300 border border-white/5 hover:border-cyan-500/30 transition-colors"
               >
                 {chip}
               </button>
@@ -177,7 +177,7 @@ export default function SphereBot({ onSelectService, services = [] }) {
             />
             <button
               onClick={() => handleSend()}
-              className="p-2.5 rounded-xl bg-cyan-500 text-space-950 font-bold hover:bg-cyan-400 transition-colors"
+              className="p-2.5 rounded-xl bg-terracotta text-white font-bold hover:bg-terracotta-dark shadow-terracotta transition-colors"
             >
               <Send className="w-3.5 h-3.5" />
             </button>

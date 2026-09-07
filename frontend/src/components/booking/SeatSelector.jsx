@@ -19,7 +19,7 @@ export default function SeatSelector({
       <div className="w-full flex flex-col items-center">
         {/* Curved Screen / Live Stage Banner */}
         <div className="w-full max-w-lg mb-6 flex flex-col items-center">
-          <div className="w-full h-2 rounded-t-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-glow-cyan" />
+          <div className="w-full h-2 rounded-t-full bg-gradient-to-r from-transparent via-gold-400 to-transparent shadow-warm" />
           <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-1 font-semibold">
             {categorySlug === 'movie'
               ? 'All Eyes Here • Curved IMAX Laser Screen'
@@ -43,13 +43,13 @@ export default function SeatSelector({
                     const isBooked = seat.status === 'booked';
                     const isHeld = seat.status === 'held';
 
-                    let seatStyle = 'bg-space-900 border-slate-700 text-slate-300 hover:border-cyan-400 hover:text-white';
+                    let seatStyle = 'bg-charcoal border-sand-500/30 text-sand-200 hover:border-gold-400 hover:text-warmwhite';
                     if (isBooked) {
-                      seatStyle = 'bg-red-950/40 border-red-900/60 text-red-700 cursor-not-allowed';
+                      seatStyle = 'bg-surface border-sand-500/20 text-sand-500/40 cursor-not-allowed';
                     } else if (isHeld) {
-                      seatStyle = 'bg-amber-950/40 border-amber-500/50 text-amber-400 cursor-not-allowed animate-pulse';
+                      seatStyle = 'bg-gold-500/20 border-gold-500/50 text-gold-300 cursor-not-allowed animate-pulse';
                     } else if (isSelected) {
-                      seatStyle = 'bg-cyan-500 border-cyan-300 text-space-950 font-bold shadow-glow-cyan scale-105';
+                      seatStyle = 'bg-terracotta border-terracotta text-white font-bold shadow-terracotta scale-105';
                     }
 
                     return (
@@ -102,8 +102,8 @@ export default function SeatSelector({
         </div>
 
         {/* Business Class Section */}
-        <div className="glass-panel p-3 rounded-xl border border-cyan-500/30 mb-4">
-          <div className="text-[10px] uppercase font-bold text-cyan-400 mb-2 flex items-center justify-between">
+        <div className="glass-panel p-3 rounded-xl border border-gold-500/30 mb-4">
+          <div className="text-[10px] uppercase font-bold text-gold-400 mb-2 flex items-center justify-between">
             <span>Executive Business Class</span>
             <span>2x2 Layout</span>
           </div>
@@ -120,8 +120,8 @@ export default function SeatSelector({
                     isBooked
                       ? 'bg-red-950/40 border-red-900 text-red-700 cursor-not-allowed'
                       : isSelected
-                      ? 'bg-cyan-500 border-cyan-300 text-space-950 shadow-glow-cyan'
-                      : 'bg-space-900 border-slate-700 text-slate-300 hover:border-cyan-400'
+                      ? 'bg-terracotta border-terracotta text-white shadow-terracotta'
+                      : 'bg-charcoal border-sand-500/30 text-slate-300 hover:border-cyan-400'
                   }`}
                 >
                   {s.id}
@@ -150,8 +150,8 @@ export default function SeatSelector({
                     isBooked
                       ? 'bg-red-950/40 border-red-900 text-red-700 cursor-not-allowed'
                       : isSelected
-                      ? 'bg-cyan-500 border-cyan-300 text-space-950 font-bold shadow-glow-cyan'
-                      : 'bg-space-900 border-slate-700 text-slate-300 hover:border-cyan-400'
+                      ? 'bg-terracotta border-terracotta text-white font-bold shadow-terracotta'
+                      : 'bg-charcoal border-sand-500/30 text-slate-300 hover:border-cyan-400'
                   }`}
                 >
                   {s.id}
@@ -184,8 +184,8 @@ export default function SeatSelector({
                       isBooked
                         ? 'bg-red-950/40 border-red-900 text-red-700 cursor-not-allowed'
                         : isSelected
-                        ? 'bg-cyan-500 border-cyan-300 text-space-950 font-bold shadow-glow-cyan'
-                        : 'bg-space-900 border-slate-700 text-slate-300 hover:border-cyan-400'
+                        ? 'bg-terracotta border-terracotta text-white font-bold shadow-terracotta'
+                        : 'bg-charcoal border-sand-500/30 text-slate-300 hover:border-cyan-400'
                     }`}
                   >
                     {b.id} ({b.tier.split(' ')[0]})
@@ -210,8 +210,8 @@ export default function SeatSelector({
                       isBooked
                         ? 'bg-red-950/40 border-red-900 text-red-700 cursor-not-allowed'
                         : isSelected
-                        ? 'bg-cyan-500 border-cyan-300 text-space-950 font-bold shadow-glow-cyan'
-                        : 'bg-space-900 border-slate-700 text-slate-300 hover:border-cyan-400'
+                        ? 'bg-terracotta border-terracotta text-white font-bold shadow-terracotta'
+                        : 'bg-charcoal border-sand-500/30 text-slate-300 hover:border-cyan-400'
                     }`}
                   >
                     {b.id} ({b.tier.split(' ')[0]})

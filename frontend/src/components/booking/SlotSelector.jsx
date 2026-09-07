@@ -25,7 +25,7 @@ export default function SlotSelector({
     return (
       <div className="w-full">
         <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-          <Clock className="w-4 h-4 text-cyan-400" />
+          <Clock className="w-4 h-4 text-gold-400" />
           Select Available 60-Minute Match Slot
         </div>
 
@@ -41,7 +41,7 @@ export default function SlotSelector({
             } else if (isHeld) {
               style = 'bg-amber-950/30 border-amber-500/50 text-amber-300 cursor-not-allowed animate-pulse';
             } else if (isSelected) {
-              style = 'bg-cyan-500/25 border-cyan-400 text-cyan-200 shadow-glow-cyan font-bold';
+              style = 'bg-terracotta/25 border-terracotta text-warmwhite shadow-terracotta font-bold';
             }
 
             return (
@@ -58,7 +58,7 @@ export default function SlotSelector({
 
                 <div>
                   {isSelected ? (
-                    <Check className="w-4 h-4 text-cyan-300 stroke-[3]" />
+                    <Check className="w-4 h-4 text-gold-300 stroke-[3]" />
                   ) : isBooked ? (
                     <span className="text-[10px] text-red-400 uppercase font-semibold">Booked</span>
                   ) : isHeld ? (
@@ -82,7 +82,7 @@ export default function SlotSelector({
     return (
       <div className="w-full">
         <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-          <Utensils className="w-4 h-4 text-cyan-400" />
+          <Utensils className="w-4 h-4 text-gold-400" />
           Choose Dining Table Configuration
         </div>
 
@@ -102,8 +102,8 @@ export default function SlotSelector({
                     : isHeld
                     ? 'bg-amber-950/30 border-amber-500/50 cursor-not-allowed animate-pulse'
                     : isSelected
-                    ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-glow-cyan'
-                    : 'glass-panel hover:border-cyan-500/40 text-slate-300'
+                    ? 'bg-terracotta/20 border-terracotta text-warmwhite shadow-terracotta'
+                    : 'glass-panel hover:border-gold-400/50 text-slate-300'
                 }`}
               >
                 <div>
@@ -112,7 +112,7 @@ export default function SlotSelector({
                   </div>
                   <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-2">
                     <span className="flex items-center gap-1">
-                      <Users className="w-3 h-3 text-cyan-400" />
+                      <Users className="w-3 h-3 text-gold-400" />
                       Up to {t.capacity} guests
                     </span>
                     <span>•</span>
@@ -122,7 +122,7 @@ export default function SlotSelector({
 
                 <div>
                   {isSelected ? (
-                    <div className="w-6 h-6 rounded-full bg-cyan-400 text-space-950 flex items-center justify-center">
+                    <div className="w-6 h-6 rounded-full bg-terracotta text-white flex items-center justify-center">
                       <Check className="w-3.5 h-3.5 stroke-[3]" />
                     </div>
                   ) : isBooked ? (
@@ -146,7 +146,7 @@ export default function SlotSelector({
     return (
       <div className="w-full">
         <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-          <Building className="w-4 h-4 text-cyan-400" />
+          <Building className="w-4 h-4 text-gold-400" />
           Select Luxury Room or Villa Category
         </div>
 
@@ -160,8 +160,8 @@ export default function SlotSelector({
                 onClick={() => onToggleItem(r.id)}
                 className={`p-4 rounded-xl border cursor-pointer transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
                   isSelected
-                    ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-glow-cyan'
-                    : 'glass-panel hover:border-cyan-500/40 text-slate-300'
+                    ? 'bg-terracotta/20 border-terracotta text-warmwhite shadow-terracotta'
+                    : 'glass-panel hover:border-gold-400/50 text-slate-300'
                 }`}
               >
                 <div>
@@ -184,7 +184,7 @@ export default function SlotSelector({
                   </div>
 
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center border ${
-                    isSelected ? 'bg-cyan-400 text-space-950 border-cyan-300' : 'border-slate-700'
+                    isSelected ? 'bg-terracotta text-white border-cyan-300' : 'border-slate-700'
                   }`}>
                     {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
@@ -204,7 +204,7 @@ export default function SlotSelector({
     return (
       <div className="w-full">
         <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-          <Car className="w-4 h-4 text-cyan-400" />
+          <Car className="w-4 h-4 text-gold-400" />
           Choose Vehicle & Chauffeur Class
         </div>
         <p className="text-[11px] text-slate-400 mb-3.5">
@@ -227,8 +227,8 @@ export default function SlotSelector({
                     : isHeld
                     ? 'bg-amber-950/30 border-amber-500/50 cursor-not-allowed animate-pulse'
                     : isSelected
-                    ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-glow-cyan'
-                    : 'glass-panel hover:border-cyan-500/40 text-slate-300'
+                    ? 'bg-terracotta/20 border-terracotta text-warmwhite shadow-terracotta'
+                    : 'glass-panel hover:border-gold-400/50 text-slate-300'
                 }`}
               >
                 <div>
@@ -254,12 +254,12 @@ export default function SlotSelector({
                   {/* Specs & Capacity */}
                   <div className="flex items-center gap-3 text-[11px] text-slate-300 mt-2.5 pt-2 border-t border-white/5">
                     <span className="flex items-center gap-1">
-                      <Users className="w-3 h-3 text-cyan-400" />
+                      <Users className="w-3 h-3 text-gold-400" />
                       {v.capacity} Seats
                     </span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
-                      <Briefcase className="w-3 h-3 text-cyan-400" />
+                      <Briefcase className="w-3 h-3 text-gold-400" />
                       {v.luggage} Bags
                     </span>
                   </div>
@@ -284,7 +284,7 @@ export default function SlotSelector({
 
                   <div className={`px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all ${
                     isSelected
-                      ? 'bg-cyan-400 text-space-950 shadow-glow-cyan'
+                      ? 'bg-terracotta text-white shadow-glow-cyan'
                       : 'bg-white/10 text-slate-300 hover:bg-white/20'
                   }`}>
                     {isSelected ? (
@@ -312,11 +312,11 @@ export default function SlotSelector({
     return (
       <div className="w-full">
         <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-          <Ticket className="w-4 h-4 text-cyan-400" />
+          <Ticket className="w-4 h-4 text-gold-400" />
           {inventory.eventType === 'CONCERT' ? 'Select Concert Festival Pass Tier' : 'Select Live Arena Comedy Tier'}
         </div>
         <p className="text-[11px] text-slate-400 mb-3.5 flex items-center gap-1.5">
-          <Sparkles className="w-3 h-3 text-purple-400" />
+          <Sparkles className="w-3 h-3 text-terracotta" />
           <span>{inventory.venue || 'Main Stadium Arena'} • Instant Dynamic QR Pass issued</span>
         </p>
 
@@ -336,14 +336,14 @@ export default function SlotSelector({
                     : isHeld
                     ? 'bg-amber-950/30 border-amber-500/50 cursor-not-allowed animate-pulse'
                     : isSelected
-                    ? 'bg-gradient-to-r from-cyan-500/20 via-purple-500/10 to-transparent border-cyan-400 text-white shadow-glow-cyan'
-                    : 'glass-panel hover:border-cyan-500/40 text-slate-300'
+                    ? 'bg-gradient-to-r from-terracotta/20 via-gold-500/10 to-transparent border-terracotta text-warmwhite shadow-terracotta'
+                    : 'glass-panel hover:border-gold-400/50 text-slate-300'
                 }`}
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold text-white">{p.name}</span>
-                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/20 text-gold-300 border border-cyan-500/30">
                       Tier Pass
                     </span>
                   </div>
@@ -357,7 +357,7 @@ export default function SlotSelector({
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {p.perks.map((perk, i) => (
                         <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-slate-300 border border-white/5 flex items-center gap-1">
-                          <Check className="w-2.5 h-2.5 text-cyan-400" />
+                          <Check className="w-2.5 h-2.5 text-gold-400" />
                           {perk}
                         </span>
                       ))}
@@ -377,7 +377,7 @@ export default function SlotSelector({
 
                   <div className={`w-8 h-8 rounded-xl flex items-center justify-center border transition-all ${
                     isSelected
-                      ? 'bg-cyan-400 text-space-950 border-cyan-300 shadow-glow-cyan'
+                      ? 'bg-terracotta text-white border-cyan-300 shadow-glow-cyan'
                       : 'border-slate-700 bg-space-900 text-slate-400 hover:border-cyan-400'
                   }`}>
                     {isSelected ? (
@@ -403,7 +403,7 @@ export default function SlotSelector({
   return (
     <div className="w-full">
       <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-        <Ticket className="w-4 h-4 text-cyan-400" />
+        <Ticket className="w-4 h-4 text-gold-400" />
         General Admission & Experience Pass
       </div>
 
@@ -411,8 +411,8 @@ export default function SlotSelector({
         onClick={() => onToggleItem('GENERAL-PASS')}
         className={`p-4 rounded-xl border cursor-pointer transition-all flex items-center justify-between ${
           isSelected
-            ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-glow-cyan'
-            : 'glass-panel hover:border-cyan-500/40 text-slate-300'
+            ? 'bg-terracotta/20 border-terracotta text-warmwhite shadow-terracotta'
+            : 'glass-panel hover:border-gold-400/50 text-slate-300'
         }`}
       >
         <div>
@@ -433,7 +433,7 @@ export default function SlotSelector({
           </div>
 
           <div className={`w-6 h-6 rounded-full flex items-center justify-center border ${
-            isSelected ? 'bg-cyan-400 text-space-950 border-cyan-300' : 'border-slate-700'
+            isSelected ? 'bg-terracotta text-white border-cyan-300' : 'border-slate-700'
           }`}>
             {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
           </div>

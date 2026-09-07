@@ -40,31 +40,31 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
 
   const getLandmarkIcon = (cat) => {
     switch (cat) {
-      case 'HOTEL': return <Building2 className="w-4 h-4 text-cyan-400" />;
-      case 'ENTERTAINMENT': return <Film className="w-4 h-4 text-purple-400" />;
+      case 'HOTEL': return <Building2 className="w-4 h-4 text-gold" />;
+      case 'ENTERTAINMENT': return <Film className="w-4 h-4 text-terracotta" />;
       case 'SPORTS': return <Trophy className="w-4 h-4 text-emerald-400" />;
-      case 'RESTAURANT': return <UtensilsCrossed className="w-4 h-4 text-amber-400" />;
-      case 'TRANSPORT': return <PlaneTakeoff className="w-4 h-4 text-blue-400" />;
-      default: return <Compass className="w-4 h-4 text-cyan-400" />;
+      case 'RESTAURANT': return <UtensilsCrossed className="w-4 h-4 text-sand" />;
+      case 'TRANSPORT': return <PlaneTakeoff className="w-4 h-4 text-gold" />;
+      default: return <Compass className="w-4 h-4 text-gold" />;
     }
   };
 
   return (
-    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-cyan-500/30 shadow-2xl bg-gradient-to-b from-space-950 via-space-900 to-space-950 select-none">
+    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-sand/15 shadow-2xl bg-gradient-to-b from-espresso via-charcoal to-espresso select-none">
       {/* Top HUD Controls Overlay */}
       <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2 pointer-events-auto">
         {/* Live Status Badge */}
-        <div className="glass-panel px-3.5 py-1.5 rounded-full border border-cyan-500/40 text-xs font-mono text-white flex items-center gap-2 shadow-glow-cyan backdrop-blur-md">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-          <span className="font-black text-xs uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+        <div className="glass-panel px-3.5 py-1.5 rounded-full border border-gold/30 text-xs font-mono text-ivory flex items-center gap-2 shadow-warm backdrop-blur-md">
+          <span className="w-2.5 h-2.5 rounded-full bg-terracotta animate-pulse" />
+          <span className="font-bold text-xs uppercase tracking-wider text-gold">
             BookSphere Express 3D
           </span>
-          <span className="text-slate-500 hidden sm:inline">•</span>
-          <span className="text-cyan-300 font-bold text-xs hidden sm:inline">{speedKmh} km/h</span>
+          <span className="text-sand/50 hidden sm:inline">•</span>
+          <span className="text-sand font-bold text-xs hidden sm:inline">{speedKmh} km/h</span>
         </div>
 
         {/* Quick Controls: Speed, Camera & Play/Pause */}
-        <div className="flex items-center gap-1.5 glass-panel p-1 rounded-2xl border border-white/10 backdrop-blur-md">
+        <div className="flex items-center gap-1.5 glass-panel p-1 rounded-2xl border border-sand/15 backdrop-blur-md">
           {/* Speed Preset Button */}
           <button
             onClick={() => {
@@ -72,10 +72,10 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
               else if (speedLevel === 'express') setSpeedLevel('turbo');
               else setSpeedLevel('cruise');
             }}
-            className="px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold bg-white/10 text-cyan-300 border border-white/10 hover:border-cyan-400/50 transition-all flex items-center gap-1"
+            className="px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold bg-white/5 text-sand border border-white/10 hover:border-gold/40 transition-all flex items-center gap-1"
             title="Toggle Highway Speed"
           >
-            <Gauge className="w-3 h-3 text-cyan-400" />
+            <Gauge className="w-3 h-3 text-gold" />
             <span>{speedKmh} km/h</span>
           </button>
 
@@ -84,11 +84,11 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
             onClick={() => setCameraMode(cameraMode === 'chase' ? 'orbit' : 'chase')}
             className={"px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 " +
               (cameraMode === 'orbit'
-                ? "bg-purple-600/40 text-purple-200 border-purple-400 shadow-glow-purple"
-                : "bg-white/5 text-slate-300 border-white/10 hover:text-white")}
+                ? "bg-gold/20 text-gold border-gold/40 shadow-warm"
+                : "bg-white/5 text-slate-300 border-white/10 hover:text-ivory")}
             title="Toggle between Chase Camera and Free 3D Orbit"
           >
-            <Camera className="w-3 h-3 text-cyan-300" />
+            <Camera className="w-3 h-3 text-gold" />
             <span className="hidden sm:inline">{cameraMode === 'orbit' ? 'Free Orbit' : 'Follow Bus'}</span>
           </button>
 
@@ -97,11 +97,11 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
             onClick={() => setIsDriving(!isDriving)}
             className={"p-1.5 rounded-xl border text-xs font-bold flex items-center gap-1 transition-all " +
               (isDriving
-                ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                : "bg-amber-500/20 text-amber-300 border-amber-500/40")}
+                ? "bg-forest/40 text-emerald-300 border-forest/50"
+                : "bg-terracotta/20 text-terracotta border-terracotta/40")}
             title={isDriving ? "Pause Cruise" : "Resume Cruise"}
           >
-            {isDriving ? <Pause className="w-3.5 h-3.5 fill-emerald-300" /> : <Play className="w-3.5 h-3.5 fill-amber-300" />}
+            {isDriving ? <Pause className="w-3.5 h-3.5 fill-emerald-300" /> : <Play className="w-3.5 h-3.5 fill-terracotta" />}
           </button>
         </div>
       </div>
@@ -118,35 +118,35 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
 
       {/* Bottom Milestone Card: Shows landmark the bus is passing right now */}
       {currentLandmark && (
-        <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-auto sm:max-w-md z-20 glass-panel p-4 rounded-2xl border border-cyan-500/40 bg-space-950/90 backdrop-blur-md shadow-glow-cyan animate-in fade-in space-y-2.5 pointer-events-auto">
+        <div className="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-auto sm:max-w-md z-20 glass-panel p-4 rounded-2xl border border-sand/20 bg-charcoal/90 backdrop-blur-md shadow-luxury animate-in fade-in space-y-2.5 pointer-events-auto">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              <div className="p-2 rounded-xl bg-surface text-gold border border-gold/30">
                 {getLandmarkIcon(currentLandmark.category)}
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold block leading-none">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-gold font-bold block leading-none">
                     Now Passing:
                   </span>
-                  <span className="px-1.5 py-0.5 rounded bg-white/10 text-slate-300 text-[9px] font-mono font-bold">
+                  <span className="px-1.5 py-0.5 rounded bg-surface text-sand text-[9px] font-mono font-bold border border-sand/15">
                     {currentLandmark.category}
                   </span>
                 </div>
-                <h4 className="text-xs sm:text-sm font-extrabold text-white mt-0.5 truncate max-w-[220px]">
+                <h4 className="text-xs sm:text-sm font-bold text-ivory mt-0.5 truncate max-w-[220px]">
                   {currentLandmark.title}
                 </h4>
               </div>
             </div>
 
-            <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold whitespace-nowrap">
+            <span className="text-xs font-mono px-2.5 py-1 rounded-lg bg-forest/30 text-emerald-300 border border-forest/40 font-bold whitespace-nowrap">
               {currentLandmark.price}
             </span>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-white/10 text-xs">
-            <span className="text-slate-400 flex items-center gap-1.5 font-mono text-[11px]">
-              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="flex items-center justify-between pt-2 border-t border-sand/10 text-xs">
+            <span className="text-sand/70 flex items-center gap-1.5 font-mono text-[11px]">
+              <MapPin className="w-3.5 h-3.5 text-gold" />
               {currentLandmark.city} • Verified Available
             </span>
 
@@ -159,7 +159,7 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="glow-button px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-glow-cyan flex items-center gap-1.5"
+              className="btn-primary px-3.5 py-1.5 rounded-xl text-xs font-bold text-white shadow-terracotta flex items-center gap-1.5"
             >
               <span>Book Venue</span>
               <ArrowRight className="w-3 h-3" />

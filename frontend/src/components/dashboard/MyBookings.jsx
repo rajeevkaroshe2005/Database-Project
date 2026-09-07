@@ -109,7 +109,7 @@ export default function MyBookings({ onBookNew }) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-gold-400">
             Account Management
           </span>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
@@ -119,7 +119,7 @@ export default function MyBookings({ onBookNew }) {
 
         <button
           onClick={onBookNew}
-          className="glow-button px-4 py-2 rounded-xl text-xs font-bold text-white shadow-glow-cyan self-start sm:self-auto"
+          className="btn-primary px-4 py-2 rounded-xl text-xs font-bold text-white shadow-terracotta self-start sm:self-auto"
         >
           + Book New Experience
         </button>
@@ -137,7 +137,7 @@ export default function MyBookings({ onBookNew }) {
             onClick={() => setActiveTab(t.id)}
             className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               activeTab === t.id
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-glow-cyan'
+                ? 'bg-surface text-warmwhite border border-gold-500/30 shadow-warm'
                 : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`}
           >
@@ -149,7 +149,7 @@ export default function MyBookings({ onBookNew }) {
       {/* Bookings List */}
       {loading ? (
         <div className="text-center py-16 text-xs text-slate-400 flex items-center justify-center gap-2">
-          <RefreshCw className="w-4 h-4 animate-spin text-cyan-400" />
+          <RefreshCw className="w-4 h-4 animate-spin text-gold-400" />
           <span>Retrieving records from database...</span>
         </div>
       ) : bookings.length === 0 ? (
@@ -171,11 +171,11 @@ export default function MyBookings({ onBookNew }) {
           {bookings.map((b) => (
             <div
               key={b.id}
-              className="glass-panel p-5 rounded-2xl border border-white/10 hover:border-cyan-500/30 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-5"
+              className="glass-panel p-5 rounded-2xl border border-white/10 hover:border-gold-500/30 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-5"
             >
               <div className="flex-1 space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-500/20 text-gold-300 border border-gold-500/30">
                     {b.booking_type}
                   </span>
                   <span className="text-xs font-mono text-slate-400">
@@ -198,11 +198,11 @@ export default function MyBookings({ onBookNew }) {
 
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                   <div className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                    <Calendar className="w-3.5 h-3.5 text-gold-400" />
                     <span>{b.scheduled_date}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                    <Clock className="w-3.5 h-3.5 text-gold-400" />
                     <span>{b.scheduled_time}</span>
                   </div>
                   <div>
@@ -223,9 +223,9 @@ export default function MyBookings({ onBookNew }) {
                 <div className="flex flex-col gap-1.5">
                   <button
                     onClick={() => setSelectedPassBooking(b)}
-                    className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-cyan-300 hover:text-white border border-cyan-500/30 flex items-center gap-1.5 transition-all shadow-sm"
+                    className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-surface text-gold-300 hover:text-warmwhite border border-gold-500/30 flex items-center gap-1.5 transition-all shadow-sm"
                   >
-                    <Ticket className="w-3 h-3 text-cyan-400" />
+                    <Ticket className="w-3 h-3 text-gold-400" />
                     Pass / Ticket
                   </button>
 
@@ -233,7 +233,7 @@ export default function MyBookings({ onBookNew }) {
                     onClick={() => window.print()}
                     className="px-3 py-1.5 rounded-lg text-xs font-medium glass-panel text-slate-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5 border border-white/10"
                   >
-                    <Printer className="w-3 h-3 text-cyan-400" />
+                    <Printer className="w-3 h-3 text-gold-400" />
                     Invoice
                   </button>
 
@@ -325,7 +325,7 @@ export default function MyBookings({ onBookNew }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-space-950/80 backdrop-blur-md">
           <div className="glass-panel p-6 rounded-3xl border border-white/15 max-w-md w-full space-y-4">
             <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-cyan-400" />
+              <MessageSquare className="w-5 h-5 text-gold-400" />
               Review Your Experience
             </h3>
             <p className="text-xs text-slate-400">

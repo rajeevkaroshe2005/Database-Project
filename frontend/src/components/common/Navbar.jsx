@@ -65,30 +65,30 @@ export default function Navbar({
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-space-950/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl py-3 transition-all">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-espresso/95 backdrop-blur-xl border-b border-sand-500/15 shadow-warm py-3 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <div
           onClick={() => setActiveView('home')}
           className="flex items-center gap-2.5 cursor-pointer group select-none shrink-0"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 p-0.5 shadow-glow-cyan group-hover:scale-105 transition-transform">
-            <div className="w-full h-full bg-space-950 rounded-[10px] flex items-center justify-center">
-              <Compass className="w-4 h-4 text-cyan-400 group-hover:rotate-45 transition-transform duration-500" />
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-gold-500 via-terracotta to-sand-400 p-0.5 shadow-warm group-hover:scale-105 transition-transform">
+            <div className="w-full h-full bg-charcoal rounded-[10px] flex items-center justify-center">
+              <Compass className="w-4 h-4 text-gold-400 group-hover:rotate-45 transition-transform duration-500" />
             </div>
           </div>
           <div>
             <span className="text-lg sm:text-xl font-extrabold tracking-tight text-white flex items-center gap-1">
-              BOOK<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">SPHERE</span>
+              BOOK<span className="text-gold-400 font-serif">SPHERE</span>
             </span>
-            <span className="block text-[8px] uppercase tracking-widest text-slate-400 font-medium -mt-1">
-              Online Reservations
+            <span className="block text-[8px] uppercase tracking-widest text-sand-300/80 font-medium -mt-1 tracking-[0.25em]">
+              Luxury Reservations
             </span>
           </div>
         </div>
 
         {/* Streamlined Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 bg-space-900/80 border border-white/10 px-2 py-1 rounded-full backdrop-blur-md">
+        <div className="hidden lg:flex items-center gap-1 bg-charcoal/90 border border-sand-500/20 px-2 py-1 rounded-full backdrop-blur-md">
           {/* Home */}
           <button
             onClick={() => {
@@ -97,8 +97,8 @@ export default function Navbar({
             }}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
               activeView === 'home'
-                ? 'text-white bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/40 shadow-glow-cyan'
-                : 'text-slate-300 hover:text-white hover:bg-white/5'
+                ? 'text-warmwhite bg-surface border border-gold-500/30 shadow-warm'
+                : 'text-sand-200/80 hover:text-warmwhite hover:bg-white/5'
             }`}
           >
             Home
@@ -108,14 +108,14 @@ export default function Navbar({
           <div className="relative" ref={categoriesRef}>
             <button
               onClick={() => setShowCategoriesMenu(!showCategoriesMenu)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-sand-200/80 hover:text-warmwhite hover:bg-white/5 transition-all"
             >
               <span>Categories</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showCategoriesMenu ? 'rotate-180 text-cyan-400' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showCategoriesMenu ? 'rotate-180 text-gold-400' : ''}`} />
             </button>
 
             {showCategoriesMenu && (
-              <div className="absolute top-full left-0 mt-2 w-64 glass-panel rounded-2xl border border-white/15 shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2">
+              <div className="absolute top-full left-0 mt-2 w-64 glass-panel rounded-2xl border border-sand-500/20 shadow-luxury p-2 z-50 animate-in fade-in slide-in-from-top-2">
                 <div className="text-[10px] uppercase font-bold text-slate-400 px-3 py-1.5 border-b border-white/10 mb-1">
                   15 Verticals • Unified Catalog
                 </div>
@@ -130,7 +130,7 @@ export default function Navbar({
                   >
                     <span className="text-lg">{cat.icon}</span>
                     <div>
-                      <div className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      <div className="text-xs font-bold text-white group-hover:text-gold-300 transition-colors">
                         {cat.label}
                       </div>
                       <div className="text-[10px] text-slate-400 leading-tight">
@@ -148,12 +148,12 @@ export default function Navbar({
             onClick={() => setActiveView('my-bookings')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all relative flex items-center gap-1.5 ${
               activeView === 'my-bookings'
-                ? 'text-white bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-cyan-500/40 shadow-glow-cyan'
-                : 'text-slate-300 hover:text-white hover:bg-white/5'
+                ? 'text-warmwhite bg-surface border border-gold-500/30 shadow-warm'
+                : 'text-sand-200/80 hover:text-warmwhite hover:bg-white/5'
             }`}
           >
             <span>My Bookings</span>
-            <span className="px-1.5 py-0.2 text-[9px] rounded-full bg-cyan-500/30 text-cyan-300 font-bold border border-cyan-500/40">
+            <span className="px-1.5 py-0.2 text-[9px] rounded-full bg-terracotta/20 text-terracotta-300 font-bold border border-terracotta/30">
               Live
             </span>
           </button>
@@ -164,11 +164,11 @@ export default function Navbar({
               onClick={() => setActiveView('admin')}
               className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
                 activeView === 'admin'
-                  ? 'bg-purple-600/40 text-purple-200 border border-purple-500/50 shadow-glow-purple'
-                  : 'text-purple-300 hover:text-white hover:bg-purple-950/40'
+                  ? 'bg-forest text-warmwhite border border-forest-light shadow-warm'
+                  : 'text-sand-300 hover:text-warmwhite hover:bg-forest/30'
               }`}
             >
-              <Shield className="w-3.5 h-3.5 text-purple-400" />
+              <Shield className="w-3.5 h-3.5 text-gold-400" />
               <span>Admin Hub</span>
             </button>
           )}
@@ -221,7 +221,7 @@ export default function Navbar({
             >
               <Bell className="w-4 h-4" />
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-500 text-[10px] font-bold text-space-950 flex items-center justify-center animate-pulse">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-terracotta text-[10px] font-bold text-white shadow-terracotta flex items-center justify-center animate-pulse">
                   {unreadCount}
                 </span>
               )}
@@ -272,12 +272,12 @@ export default function Navbar({
           </div>
 
           {/* Quick Demo Role Switcher Pill */}
-          <div className="flex items-center bg-space-900/90 border border-white/15 rounded-full p-0.5 text-[11px] shadow-sm">
+          <div className="flex items-center bg-charcoal border border-sand-500/20 rounded-full p-0.5 text-[11px] shadow-sm">
             <button
               onClick={handleSwitchToCustomer}
               className={`px-3 py-1 rounded-full transition-all font-semibold ${
                 user?.role === 'user' && activeView !== 'admin'
-                  ? 'bg-cyan-500 text-space-950 font-bold shadow-glow-cyan'
+                  ? 'bg-terracotta text-white font-bold shadow-terracotta'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -287,7 +287,7 @@ export default function Navbar({
               onClick={handleSwitchToAdmin}
               className={`px-3 py-1 rounded-full transition-all font-semibold ${
                 (user?.role === 'super_admin' || user?.role === 'admin') && activeView === 'admin'
-                  ? 'bg-purple-600 text-white font-bold shadow-glow-purple'
+                  ? 'bg-forest text-warmwhite font-bold'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -305,7 +305,7 @@ export default function Navbar({
                 <img
                   src={user.avatarUrl}
                   alt={user.fullName}
-                  className="w-7 h-7 rounded-lg object-cover border border-cyan-500/40"
+                  className="w-7 h-7 rounded-lg object-cover border border-gold-500/40"
                 />
                 <span className="hidden sm:inline text-xs font-medium text-white max-w-[90px] truncate">
                   {user.fullName.split(' ')[0]}
@@ -346,7 +346,7 @@ export default function Navbar({
                     }}
                     className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
                   >
-                    <Shield className="w-3.5 h-3.5 text-purple-400" />
+                    <Shield className="w-3.5 h-3.5 text-gold-400" />
                     Toggle Demo Role ({user.role === 'user' ? 'Switch to Admin' : 'Switch to Customer'})
                   </button>
 
@@ -366,7 +366,7 @@ export default function Navbar({
           ) : (
             <button
               onClick={onOpenAuth}
-              className="glow-button px-3.5 py-1.5 rounded-xl text-xs font-semibold text-white shadow-glow-cyan"
+              className="btn-primary px-4 py-1.5 rounded-xl text-xs font-semibold text-white shadow-terracotta"
             >
               Sign In
             </button>
@@ -392,7 +392,7 @@ export default function Navbar({
                 setMobileMenuOpen(false);
               }}
               className={`px-3 py-2 rounded-xl text-xs font-medium text-left transition-all ${
-                activeView === 'home' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'text-slate-300 hover:bg-white/5'
+                activeView === 'home' ? 'bg-cyan-500/20 text-cyan-300 border border-gold-500/40' : 'text-slate-300 hover:bg-white/5'
               }`}
             >
               Home
@@ -403,7 +403,7 @@ export default function Navbar({
                 setMobileMenuOpen(false);
               }}
               className={`px-3 py-2 rounded-xl text-xs font-medium text-left transition-all ${
-                activeView === 'my-bookings' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'text-slate-300 hover:bg-white/5'
+                activeView === 'my-bookings' ? 'bg-cyan-500/20 text-cyan-300 border border-gold-500/40' : 'text-slate-300 hover:bg-white/5'
               }`}
             >
               My Bookings
@@ -416,7 +416,7 @@ export default function Navbar({
                   setMobileMenuOpen(false);
                 }}
                 className={`px-3 py-2 rounded-xl text-xs font-medium text-left transition-all ${
-                  activeView === item.id ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' : 'text-slate-300 hover:bg-white/5'
+                  activeView === item.id ? 'bg-cyan-500/20 text-cyan-300 border border-gold-500/40' : 'text-slate-300 hover:bg-white/5'
                 }`}
               >
                 {item.icon} {item.label}

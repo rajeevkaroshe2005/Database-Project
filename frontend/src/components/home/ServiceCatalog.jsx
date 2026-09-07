@@ -53,14 +53,14 @@ export default function ServiceCatalog({
   }
 
   return (
-    <section id="catalog-section" className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="catalog-section" className="py-16 bg-cream text-espresso border-b border-sand-300/40"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Section Top Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
+          <span className="text-xs font-bold uppercase tracking-widest text-terracotta">
             Real-Time Catalog
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-espresso mt-1 font-serif">
             Available Venues & Travel Routes
           </h2>
         </div>
@@ -68,14 +68,14 @@ export default function ServiceCatalog({
         {/* Filter Controls Bar */}
         <div className="flex flex-wrap items-center gap-2.5">
           {/* Quick Search Input */}
-          <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs">
-            <Search className="w-3.5 h-3.5 text-cyan-400 mr-1.5 shrink-0" />
+          <div className="flex items-center bg-warmwhite px-3 py-1.5 rounded-xl border border-sand-300 shadow-sm text-xs">
+            <Search className="w-3.5 h-3.5 text-terracotta mr-1.5 shrink-0" />
             <input
               type="text"
               placeholder="Filter by name, artist, cab..."
               value={currentSearch}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-transparent text-slate-200 outline-none text-xs placeholder:text-slate-500 w-36 sm:w-48"
+              className="bg-transparent text-espresso outline-none text-xs placeholder:text-charcoal/40 w-36 sm:w-48"
             />
             {currentSearch && (
               <button
@@ -89,12 +89,12 @@ export default function ServiceCatalog({
           </div>
 
           {/* City Selector */}
-          <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs">
-            <MapPin className="w-3.5 h-3.5 text-cyan-400 mr-1.5" />
+          <div className="flex items-center bg-warmwhite px-3 py-1.5 rounded-xl border border-sand-300 shadow-sm text-xs">
+            <MapPin className="w-3.5 h-3.5 text-terracotta mr-1.5" />
             <select
               value={currentCity}
               onChange={(e) => setCity(e.target.value)}
-              className="bg-transparent text-slate-200 outline-none cursor-pointer text-xs"
+              className="bg-transparent text-espresso outline-none cursor-pointer text-xs"
             >
               {cities.map(c => (
                 <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
@@ -103,12 +103,12 @@ export default function ServiceCatalog({
           </div>
 
           {/* Sort Selector */}
-          <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs">
-            <Filter className="w-3.5 h-3.5 text-purple-400 mr-1.5" />
+          <div className="flex items-center bg-warmwhite px-3 py-1.5 rounded-xl border border-sand-300 shadow-sm text-xs">
+            <Filter className="w-3.5 h-3.5 text-sand-600 mr-1.5" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-transparent text-slate-200 outline-none cursor-pointer text-xs"
+              className="bg-transparent text-espresso outline-none cursor-pointer text-xs"
             >
               <option value="featured" className="bg-space-900 text-white">Recommended</option>
               <option value="price_asc" className="bg-space-900 text-white">Price: Low to High</option>
@@ -128,7 +128,7 @@ export default function ServiceCatalog({
               setSelectedCity('All');
               onSelectCategory('all');
             }}
-            className="mt-3 text-xs text-cyan-400 hover:underline"
+            className="mt-3 text-xs text-terracotta hover:underline"
           >
             Reset all filters
           </button>
@@ -138,7 +138,7 @@ export default function ServiceCatalog({
           {filtered.map((s) => (
             <div
               key={s.id}
-              className="glass-panel rounded-2xl overflow-hidden border border-white/10 group hover:border-cyan-500/40 hover:shadow-glow-cyan transition-all duration-300 flex flex-col justify-between"
+              className="bg-warmwhite rounded-2xl overflow-hidden border border-sand-300/80 shadow-sm hover:shadow-warm hover:border-sand-400 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Cover Image */}
@@ -148,20 +148,20 @@ export default function ServiceCatalog({
                     alt={s.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-space-950 via-transparent to-transparent opacity-85" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-85" />
 
                   {/* Badges */}
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-space-950/80 backdrop-blur-md text-cyan-300 border border-cyan-500/30">
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-charcoal/90 backdrop-blur-md text-warmwhite border border-sand-500/30">
                     {s.parent_type}
                   </div>
 
-                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
+                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-md text-[10px] font-semibold bg-forest/60 text-emerald-200 border border-forest-light flex items-center gap-1">
                     <CheckCircle2 className="w-2.5 h-2.5" />
                     Available
                   </div>
 
                   <div className="absolute bottom-3 left-3 flex items-center gap-1 text-xs text-slate-300 font-medium">
-                    <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                    <MapPin className="w-3.5 h-3.5 text-terracotta" />
                     <span>{s.city}</span>
                   </div>
                 </div>
@@ -174,11 +174,11 @@ export default function ServiceCatalog({
                     <span className="text-slate-500 font-normal">({s.review_count} reviews)</span>
                   </div>
 
-                  <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-base font-bold text-espresso group-hover:text-terracotta font-serif transition-colors">
                     {s.title}
                   </h3>
 
-                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-charcoal/70 line-clamp-2 leading-relaxed">
                     {s.tagline || s.description}
                   </p>
 
@@ -186,7 +186,7 @@ export default function ServiceCatalog({
                   {s.amenities && (
                     <div className="flex flex-wrap gap-1.5 pt-2">
                       {s.amenities.slice(0, 3).map((a, i) => (
-                        <span key={i} className="px-2 py-0.5 rounded-md text-[10px] bg-white/5 text-slate-300 border border-white/5">
+                        <span key={i} className="px-2 py-0.5 rounded-md text-[10px] bg-sand-200/50 text-charcoal/80 border border-sand-300/60">
                           {a}
                         </span>
                       ))}
@@ -197,18 +197,18 @@ export default function ServiceCatalog({
 
               {/* Price & Booking Button */}
               <div className="p-4 pt-0 mt-2">
-                <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                <div className="pt-3 border-t border-sand-300/60 flex items-center justify-between">
                   <div>
-                    <div className="text-[10px] text-slate-400 uppercase tracking-wider">Starting from</div>
-                    <div className="text-base font-extrabold text-white">
+                    <div className="text-[10px] text-sand-500 uppercase tracking-wider font-semibold">Starting from</div>
+                    <div className="text-base font-extrabold text-espresso">
                       {formatPrice(s.base_price)}
-                      <span className="text-[11px] font-normal text-slate-400 ml-1">/{s.price_unit.replace('per ', '')}</span>
+                      <span className="text-[11px] font-normal text-charcoal/60 ml-1">/{s.price_unit.replace('per ', '')}</span>
                     </div>
                   </div>
 
                   <button
                     onClick={() => onBookNow(s)}
-                    className="glow-button px-4 py-2 rounded-xl text-xs font-bold text-white shadow-glow-cyan"
+                    className="btn-primary px-4 py-2 rounded-xl text-xs font-bold text-white shadow-terracotta"
                   >
                     Reserve Now
                   </button>
@@ -218,6 +218,6 @@ export default function ServiceCatalog({
           ))}
         </div>
       )}
-    </section>
+    </div></section>
   );
 }

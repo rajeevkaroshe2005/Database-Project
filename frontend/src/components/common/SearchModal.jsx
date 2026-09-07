@@ -19,7 +19,7 @@ export default function SearchModal({ services = [], onClose, onSelectService })
       <div className="w-full max-w-2xl glass-panel rounded-3xl border border-white/15 shadow-2xl p-4 sm:p-6 space-y-4">
         {/* Search Input Bar */}
         <div className="flex items-center gap-3 border-b border-white/10 pb-3">
-          <Search className="w-5 h-5 text-cyan-400 shrink-0" />
+          <Search className="w-5 h-5 text-gold-400 shrink-0" />
           <input
             type="text"
             autoFocus
@@ -51,16 +51,16 @@ export default function SearchModal({ services = [], onClose, onSelectService })
                   onSelectService(s);
                   onClose();
                 }}
-                className="p-3 rounded-xl border border-white/5 hover:border-cyan-500/40 hover:bg-white/5 cursor-pointer transition-all flex items-center justify-between gap-3 group"
+                className="p-3 rounded-xl border border-white/5 hover:border-gold-500/40 hover:bg-white/5 cursor-pointer transition-all flex items-center justify-between gap-3 group"
               >
                 <div className="flex items-center gap-3">
                   <img src={s.cover_image} className="w-10 h-10 rounded-lg object-cover" />
                   <div>
-                    <div className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <div className="text-xs font-bold text-white group-hover:text-gold-300 transition-colors">
                       {s.title}
                     </div>
                     <div className="text-[11px] text-slate-400 flex items-center gap-2 mt-0.5">
-                      <span className="text-cyan-400 font-semibold">{s.parent_type}</span>
+                      <span className="text-gold-400 font-semibold">{s.parent_type}</span>
                       <span>•</span>
                       <span className="flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
@@ -75,7 +75,7 @@ export default function SearchModal({ services = [], onClose, onSelectService })
                     <div className="font-extrabold text-white">₹{s.base_price.toLocaleString('en-IN')}</div>
                     <div className="text-[10px] text-slate-500">{s.price_unit}</div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-gold-400 group-hover:translate-x-1 transition-all" />
                 </div>
               </div>
             ))

@@ -42,7 +42,7 @@ export default function AuthModal({ onClose }) {
       <div className="relative w-full max-w-md glass-panel rounded-3xl border border-white/15 p-6 shadow-2xl space-y-5">
         <div className="flex items-center justify-between border-b border-white/10 pb-3">
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-wider text-cyan-400">Account Access</div>
+            <div className="text-[10px] font-bold uppercase tracking-wider text-gold-400">Account Access</div>
             <h3 className="text-lg font-bold text-white mt-0.5">
               {isRegister ? 'Create BookSphere Account' : 'Welcome to BookSphere'}
             </h3>
@@ -62,7 +62,7 @@ export default function AuthModal({ onClose }) {
             <button
               type="button"
               onClick={() => handleQuickDemo('user')}
-              className="py-1.5 px-2 rounded-lg bg-cyan-500/20 text-cyan-300 font-medium hover:bg-cyan-500/30 text-[11px]"
+              className="py-1.5 px-2 rounded-lg bg-terracotta/20 text-terracotta-300 font-medium hover:bg-cyan-500/30 text-[11px]"
             >
               👤 Customer (Priya - Gold)
             </button>
@@ -149,7 +149,7 @@ export default function AuthModal({ onClose }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full glow-button py-2.5 rounded-xl font-bold text-white shadow-glow-cyan mt-2"
+            className="w-full btn-primary py-2.5 rounded-xl font-bold text-white shadow-terracotta mt-2"
           >
             {loading ? 'Processing...' : isRegister ? 'Register Account' : 'Sign In'}
           </button>
@@ -160,7 +160,7 @@ export default function AuthModal({ onClose }) {
           <button
             type="button"
             onClick={() => setIsRegister(!isRegister)}
-            className="text-cyan-400 font-semibold hover:underline ml-1"
+            className="text-gold-400 font-semibold hover:underline ml-1"
           >
             {isRegister ? 'Sign In' : 'Register Now'}
           </button>

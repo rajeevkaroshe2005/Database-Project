@@ -85,7 +85,7 @@ export default function MockPaymentGateway({
               onClick={() => setMethod(m.id)}
               className={`p-2.5 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1.5 transition-all ${
                 isSelected
-                  ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-glow-cyan'
+                  ? 'bg-terracotta/20 border-terracotta text-warmwhite shadow-terracotta'
                   : 'glass-panel hover:bg-white/5 text-slate-400'
               }`}
             >
@@ -129,7 +129,7 @@ export default function MockPaymentGateway({
       {method === 'CREDIT_CARD' && (
         <div className="space-y-3">
           {/* Animated Card Preview */}
-          <div className="relative h-40 rounded-2xl p-5 bg-gradient-to-tr from-cyan-600 via-blue-700 to-indigo-900 border border-white/20 shadow-2xl overflow-hidden flex flex-col justify-between">
+          <div className="relative h-40 rounded-2xl p-5 bg-gradient-to-tr from-charcoal via-surface to-charcoal border border-gold-500/30 border border-white/20 shadow-2xl overflow-hidden flex flex-col justify-between">
             <div className="flex justify-between items-center text-white">
               <span className="text-xs font-mono font-bold tracking-widest uppercase">BookSphere Black Card</span>
               <span className="text-sm font-extrabold italic">VISA</span>
@@ -141,11 +141,11 @@ export default function MockPaymentGateway({
 
             <div className="flex justify-between items-end text-xs text-white">
               <div>
-                <span className="text-[9px] uppercase tracking-wider block text-cyan-200">Cardholder</span>
+                <span className="text-[9px] uppercase tracking-wider block text-gold-300">Cardholder</span>
                 <span className="font-semibold uppercase">{cardHolder}</span>
               </div>
               <div className="text-right">
-                <span className="text-[9px] uppercase tracking-wider block text-cyan-200">Expires</span>
+                <span className="text-[9px] uppercase tracking-wider block text-gold-300">Expires</span>
                 <span className="font-semibold">{cardExpiry}</span>
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function MockPaymentGateway({
                 onClick={() => setSelectedBank(b.id)}
                 className={`p-2.5 rounded-xl border text-xs font-semibold text-left transition-all ${
                   selectedBank === b.id
-                    ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
+                    ? 'bg-terracotta/20 border-terracotta text-warmwhite'
                     : 'bg-space-900 border-slate-700 text-slate-300 hover:border-slate-500'
                 }`}
               >
@@ -225,7 +225,7 @@ export default function MockPaymentGateway({
         <button
           disabled={status === 'processing' || status === 'success'}
           onClick={handlePay}
-          className="w-full glow-button py-3 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2 shadow-glow-cyan"
+          className="w-full btn-primary py-3 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2 shadow-terracotta"
         >
           {status === 'processing' ? (
             <>

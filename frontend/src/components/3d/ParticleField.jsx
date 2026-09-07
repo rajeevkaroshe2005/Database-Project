@@ -10,10 +10,10 @@ const Particles = ({ count = 200 }) => {
     const col = new Float32Array(count * 3);
 
     const palette = [
-      new THREE.Color('#00f2fe'),
-      new THREE.Color('#38bdf8'),
-      new THREE.Color('#818cf8'),
-      new THREE.Color('#a855f7')
+      new THREE.Color('#C9A96E'),
+      new THREE.Color('#D8C7AD'),
+      new THREE.Color('#FAF8F3'),
+      new THREE.Color('#B86B4B')
     ];
 
     for (let i = 0; i < count; i++) {

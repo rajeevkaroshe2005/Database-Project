@@ -73,9 +73,9 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto glass-panel rounded-2xl p-4 sm:p-6 border border-white/10 shadow-2xl shadow-cyan-950/30 backdrop-blur-2xl transition-all">
+    <div className="w-full max-w-5xl mx-auto bg-surface/95 rounded-2xl p-4 sm:p-6 border border-sand-500/20 shadow-luxury backdrop-blur-xl transition-all">
       {/* Category Tabs */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 scrollbar-none border-b border-white/10">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-3 mb-4 scrollbar-none border-b border-sand-500/15">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -85,11 +85,11 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                 isActive
-                  ? 'bg-gradient-to-r from-cyan-500/25 to-blue-600/25 text-cyan-300 border border-cyan-500/40 shadow-glow-cyan'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-terracotta text-white font-bold shadow-terracotta border border-terracotta'
+                  : 'text-sand-300 hover:text-warmwhite hover:bg-white/5'
               }`}
             >
-              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-cyan-400' : 'text-slate-400'}`} />
+              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-gold-400' : 'text-sand-300'}`} />
               {tab.label}
             </button>
           );
@@ -102,40 +102,40 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
         {activeTab === 'TRANSPORT' && (
           <>
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-gold-400" />
                 From Location
               </label>
               <select
                 value={fromCity}
                 onChange={(e) => setFromCity(e.target.value)}
-                className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium focus:ring-1 focus:ring-cyan-400"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium focus:ring-1 focus:ring-gold-400"
               >
                 {indianCities.map((c) => (
-                  <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
+                  <option key={c} value={c} className="bg-charcoal text-white">{c}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-purple-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-terracotta" />
                 To Destination
               </label>
               <select
                 value={toCity}
                 onChange={(e) => setToCity(e.target.value)}
-                className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium focus:ring-1 focus:ring-cyan-400"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium focus:ring-1 focus:ring-gold-400"
               >
                 {indianCities.map((c) => (
-                  <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
+                  <option key={c} value={c} className="bg-charcoal text-white">{c}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Calendar className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Calendar className="w-3 h-3 text-gold-400" />
                 Departure Date
               </label>
               <input
@@ -152,8 +152,8 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
         {activeTab === 'ENTERTAINMENT' && (
           <>
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Film className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Film className="w-3 h-3 text-gold-400" />
                 Movie / Event
               </label>
               <input
@@ -161,13 +161,13 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 placeholder="Oppenheimer, Zakir Khan, Martin Garrix..."
                 value={movieQuery}
                 onChange={(e) => setMovieQuery(e.target.value)}
-                className="w-full glass-input rounded-xl px-3 py-2 text-xs placeholder:text-slate-500"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs placeholder:text-sand-400/60"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-gold-400" />
                 City / Arena
               </label>
               <select
@@ -176,14 +176,14 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
                 {destinationCities.map((c) => (
-                  <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
+                  <option key={c} value={c} className="bg-charcoal text-white">{c}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Calendar className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Calendar className="w-3 h-3 text-gold-400" />
                 Show Date
               </label>
               <input
@@ -200,8 +200,8 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
         {activeTab === 'SPORTS' && (
           <>
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Trophy className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Trophy className="w-3 h-3 text-gold-400" />
                 Sport Type
               </label>
               <select
@@ -209,16 +209,16 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 onChange={(e) => setSportType(e.target.value)}
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
-                <option value="turf" className="bg-space-900 text-white">Football / Box Turf</option>
-                <option value="pool" className="bg-space-900 text-white">Olympic Swimming Pool</option>
-                <option value="court" className="bg-space-900 text-white">Badminton / Tennis Court</option>
-                <option value="ground" className="bg-space-900 text-white">Cricket Ground</option>
+                <option value="turf" className="bg-charcoal text-white">Football / Box Turf</option>
+                <option value="pool" className="bg-charcoal text-white">Olympic Swimming Pool</option>
+                <option value="court" className="bg-charcoal text-white">Badminton / Tennis Court</option>
+                <option value="ground" className="bg-charcoal text-white">Cricket Ground</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-gold-400" />
                 City / Complex
               </label>
               <select
@@ -227,14 +227,14 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
                 {destinationCities.map((c) => (
-                  <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
+                  <option key={c} value={c} className="bg-charcoal text-white">{c}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Clock className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Clock className="w-3 h-3 text-gold-400" />
                 Time Slot
               </label>
               <select
@@ -242,10 +242,10 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 onChange={(e) => setTimeSlot(e.target.value)}
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
-                <option value="06:00 AM" className="bg-space-900 text-white">06:00 AM - 07:00 AM</option>
-                <option value="07:00 PM" className="bg-space-900 text-white">07:00 PM - 08:00 PM</option>
-                <option value="08:00 PM" className="bg-space-900 text-white">08:00 PM - 09:00 PM</option>
-                <option value="09:00 PM" className="bg-space-900 text-white">09:00 PM - 10:00 PM</option>
+                <option value="06:00 AM" className="bg-charcoal text-white">06:00 AM - 07:00 AM</option>
+                <option value="07:00 PM" className="bg-charcoal text-white">07:00 PM - 08:00 PM</option>
+                <option value="08:00 PM" className="bg-charcoal text-white">08:00 PM - 09:00 PM</option>
+                <option value="09:00 PM" className="bg-charcoal text-white">09:00 PM - 10:00 PM</option>
               </select>
             </div>
           </>
@@ -255,8 +255,8 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
         {(activeTab === 'HOTEL' || activeTab === 'RESTAURANT' || activeTab === 'EXPERIENCE') && (
           <>
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <MapPin className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-gold-400" />
                 Destination / City
               </label>
               <select
@@ -265,14 +265,14 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
                 {destinationCities.map((c) => (
-                  <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
+                  <option key={c} value={c} className="bg-charcoal text-white">{c}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Calendar className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Calendar className="w-3 h-3 text-gold-400" />
                 {activeTab === 'HOTEL' ? 'Check-in Date' : 'Reservation Date'}
               </label>
               <input
@@ -284,8 +284,8 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-slate-400 mb-1 flex items-center gap-1.5">
-                <Users className="w-3 h-3 text-cyan-400" />
+              <label className="block text-[11px] font-medium text-sand-300 mb-1 flex items-center gap-1.5">
+                <Users className="w-3 h-3 text-gold-400" />
                 Guests / Party Size
               </label>
               <select
@@ -293,10 +293,10 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 onChange={(e) => setGuestCount(parseInt(e.target.value))}
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
-                <option value={1} className="bg-space-900 text-white">1 Guest</option>
-                <option value={2} className="bg-space-900 text-white">2 Guests</option>
-                <option value={4} className="bg-space-900 text-white">4 Guests (Booth / Table)</option>
-                <option value={6} className="bg-space-900 text-white">6+ Guests (Family / Group)</option>
+                <option value={1} className="bg-charcoal text-white">1 Guest</option>
+                <option value={2} className="bg-charcoal text-white">2 Guests</option>
+                <option value={4} className="bg-charcoal text-white">4 Guests (Booth / Table)</option>
+                <option value={6} className="bg-charcoal text-white">6+ Guests (Family / Group)</option>
               </select>
             </div>
           </>
@@ -306,7 +306,7 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
         <div>
           <button
             type="submit"
-            className="w-full glow-button py-2.5 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 shadow-glow-cyan"
+            className="w-full btn-primary py-2.5 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2 shadow-terracotta"
           >
             <Search className="w-4 h-4" />
             <span>Search Experiences</span>

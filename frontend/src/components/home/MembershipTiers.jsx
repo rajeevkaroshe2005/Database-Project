@@ -68,29 +68,29 @@ export default function MembershipTiers({ onBookNow }) {
   const progressPercent = Math.min(100, Math.round((currentPoints / nextTierPoints) * 100));
 
   return (
-    <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-surface text-warmwhite border-b border-sand-500/15"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 flex items-center justify-center gap-1.5">
+        <span className="text-xs font-bold uppercase tracking-widest text-gold-400 flex items-center justify-center gap-1.5">
           <Crown className="w-4 h-4 text-amber-400" />
           Loyalty & Privileges
         </span>
-        <h2 className="text-2xl sm:text-4xl font-extrabold text-white mt-1">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-warmwhite mt-1 font-serif">
           Unlock Tiered Elite Status
         </h2>
-        <p className="text-sm text-slate-400 mt-2">
+        <p className="text-sm text-sand-300 mt-2">
           Earn 1 point for every ₹100 spent. Redeem points directly against payments for instant discounts.
         </p>
 
         {/* User Current Tier Status Card */}
         {user && (
-          <div className="mt-6 inline-flex flex-col sm:flex-row items-center gap-4 glass-panel px-6 py-3.5 rounded-2xl border border-cyan-500/30 shadow-glow-cyan text-left">
+          <div className="mt-6 inline-flex flex-col sm:flex-row items-center gap-4 bg-charcoal px-6 py-3.5 rounded-2xl border border-gold-500/30 shadow-warm text-left">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
                 <Award className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Your Balance</div>
+                <div className="text-[10px] uppercase font-bold text-sand-300 tracking-wider">Your Balance</div>
                 <div className="text-lg font-extrabold text-white flex items-center gap-1.5">
                   <span>{currentPoints} Points</span>
                   <span className="text-xs font-normal text-amber-300">({user.membership?.tierName})</span>
@@ -99,13 +99,13 @@ export default function MembershipTiers({ onBookNow }) {
             </div>
 
             <div className="w-full sm:w-48">
-              <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+              <div className="flex justify-between text-[11px] text-sand-300 mb-1">
                 <span>Next: Platinum</span>
                 <span>{progressPercent}%</span>
               </div>
               <div className="w-full h-2 rounded-full bg-space-900 overflow-hidden border border-white/10">
                 <div
-                  className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full transition-all duration-1000"
+                  className="h-full bg-gradient-to-r from-gold-400 via-terracotta to-gold-300 rounded-full transition-all duration-1000"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
@@ -125,14 +125,14 @@ export default function MembershipTiers({ onBookNow }) {
               className={`glass-panel rounded-2xl p-5 border relative flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${t.color}`}
             >
               {isCurrent && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-cyan-500 text-space-950 font-bold text-[10px] tracking-wider uppercase shadow-glow-cyan">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gold-500 text-charcoal font-bold text-[10px] tracking-wider uppercase shadow-warm">
                   Your Current Tier
                 </div>
               )}
 
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-sand-300">
                     {t.badge}
                   </span>
                   <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-white/10">
@@ -143,19 +143,19 @@ export default function MembershipTiers({ onBookNow }) {
                 <h3 className="text-lg font-extrabold text-white">{t.name}</h3>
 
                 <div className="mt-3 py-2 border-y border-white/10 flex items-center justify-between text-xs">
-                  <span className="text-slate-400">Discount:</span>
+                  <span className="text-sand-300">Discount:</span>
                   <span className="font-bold text-white">{t.discount}</span>
                 </div>
 
                 <div className="py-2 border-b border-white/10 flex items-center justify-between text-xs mb-4">
-                  <span className="text-slate-400">Multiplier:</span>
-                  <span className="font-bold text-cyan-400">{t.multiplier}</span>
+                  <span className="text-sand-300">Multiplier:</span>
+                  <span className="font-bold text-gold-400">{t.multiplier}</span>
                 </div>
 
                 <ul className="space-y-2 text-xs text-slate-300">
                   {t.perks.map((p, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <Check className="w-3.5 h-3.5 text-cyan-400 mt-0.5 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-gold-400 mt-0.5 shrink-0" />
                       <span className="leading-snug">{p}</span>
                     </li>
                   ))}
@@ -175,6 +175,6 @@ export default function MembershipTiers({ onBookNow }) {
           );
         })}
       </div>
-    </section>
+    </div></section>
   );
 }
