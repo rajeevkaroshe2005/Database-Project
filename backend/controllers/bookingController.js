@@ -89,7 +89,8 @@ exports.createBooking = async (req, res) => {
       passengers = [],
       couponCode,
       redeemPoints = 0,
-      paymentMethod = 'UPI'
+      paymentMethod = 'UPI',
+      customBaseAmount
     } = req.body;
 
     const store = getStore();
@@ -102,7 +103,9 @@ exports.createBooking = async (req, res) => {
 
     // Compute Base Price
     let baseAmount = 0;
-    if (selectedItems.length > 0) {
+    if (customBaseAmount && typeof customBaseAmount === 'number' && customBaseAmount > 0) {
+      baseAmount = customBaseAmount;
+    } else if (selectedItems.length > 0) {
       // Calculate based on items count or multipliers
       baseAmount = service.base_price * selectedItems.length;
     } else {

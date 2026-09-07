@@ -137,37 +137,127 @@ exports.getServiceInventory = async (req, res) => {
     let inventory = {};
 
     if (service.parent_type === 'ENTERTAINMENT') {
-      // Movie / Theatre / Auditorium Seat Map
-      const rows = ['A', 'B', 'C', 'D'];
-      const seats = [];
-      rows.forEach(row => {
-        for (let i = 1; i <= 8; i++) {
-          const seatId = `${row}${i}`;
-          let seatClass = 'GOLD';
-          let price = service.base_price;
-
-          if (row === 'A') {
-            seatClass = 'VIP_RECLINER';
-            price = Math.round(service.base_price * 1.5);
-          } else if (row === 'B') {
-            seatClass = 'PLATINUM';
-            price = Math.round(service.base_price * 1.25);
+      if (service.category_slug === 'concert') {
+        // Stadium Concert / Music Festival Tiered Passes
+        const passes = [
+          {
+            id: 'VIP_LOUNGE',
+            name: 'VIP Elevated Lounge Deck',
+            description: 'Complimentary Drinks, Lounge Seating, Dedicated Bar & Fast-Track Entry',
+            perks: ['Free Premium Drinks', 'Fast Track Entry', 'Elevated Stage View', 'Private Lounge Bar'],
+            price: 6999,
+            available: 40
+          },
+          {
+            id: 'FAN_PIT',
+            name: 'Fan Pit / Front of Stage',
+            description: 'Closest View to Artist Stage, Dedicated Pit Entry & Official Tour Lanyard',
+            perks: ['Front Stage Access', 'Tour Lanyard Pass', 'Dedicated Food & Bar Lane'],
+            price: 4499,
+            available: 110
+          },
+          {
+            id: 'GA_PHASE1',
+            name: 'General Admission (Phase 1)',
+            description: 'Full Arena & Festival Village Access, LED Mainstage Audio-Visuals',
+            perks: ['Arena Access', 'Festival Village Entry', 'Food Courts Access'],
+            price: 2499,
+            available: 350
+          },
+          {
+            id: 'EARLY_BIRD',
+            name: 'Early Bird Arena Access',
+            description: 'Standard General Admission, Entry Strictly Before 5:00 PM',
+            perks: ['Entry Before 5 PM', 'Arena Access'],
+            price: 1999,
+            available: 65
           }
-
-          const isBooked = bookedItems.includes(seatId) || (seatId === 'A1' || seatId === 'B5'); // seed booked
-          const isHeld = activeHolds.includes(seatId);
-
-          seats.push({
-            id: seatId,
-            row,
-            number: i,
-            seatClass,
-            price,
+        ].map(p => {
+          const isHeld = activeHolds.includes(p.id);
+          const isBooked = bookedItems.includes(p.id);
+          return {
+            ...p,
             status: isBooked ? 'booked' : (isHeld ? 'held' : 'available')
-          });
-        }
-      });
-      inventory = { type: 'SEAT_GRID', seats, screenOrientation: 'TOP' };
+          };
+        });
+        inventory = { type: 'EVENT_PASSES', passes, eventType: 'CONCERT', venue: 'Mahalaxmi Racecourse Arena' };
+      } else if (service.category_slug === 'comedy') {
+        // Comedy Arena / Auditorium Passes
+        const passes = [
+          {
+            id: 'VIP_FRONT',
+            name: 'Front Row Royal Lounge',
+            description: 'Front Stage Row + Exclusive Post-Show Meet & Greet with Zakir Khan',
+            perks: ['Front Row Center', 'Post-Show Meet & Greet', 'Priority Seating Lane'],
+            price: 2999,
+            available: 20
+          },
+          {
+            id: 'PLATINUM',
+            name: 'Platinum Center Arena',
+            description: 'Prime Center Stage Clear Line of Sight, High-Definition Audio Zone',
+            perks: ['Prime Center View', 'Plush Recliner Chairs', 'Acoustic Sweet Spot'],
+            price: 1899,
+            available: 75
+          },
+          {
+            id: 'GOLD',
+            name: 'Gold Reserved Tier',
+            description: 'Elevated Stalls Acoustic Zone, Unobstructed Sightline to Stage',
+            perks: ['Elevated Tier View', 'Reserved Seating'],
+            price: 1499,
+            available: 140
+          },
+          {
+            id: 'SILVER',
+            name: 'Silver Balcony Tier',
+            description: 'Standard Balcony Seating with Clear Sound Acoustics',
+            perks: ['Balcony View', 'Acoustic Clarity'],
+            price: 999,
+            available: 95
+          }
+        ].map(p => {
+          const isHeld = activeHolds.includes(p.id);
+          const isBooked = bookedItems.includes(p.id);
+          return {
+            ...p,
+            status: isBooked ? 'booked' : (isHeld ? 'held' : 'available')
+          };
+        });
+        inventory = { type: 'EVENT_PASSES', passes, eventType: 'COMEDY', venue: 'Koramangala Indoor Stadium' };
+      } else {
+        // Movie / Cinema Theater Seat Map
+        const rows = ['A', 'B', 'C', 'D'];
+        const seats = [];
+        rows.forEach(row => {
+          for (let i = 1; i <= 8; i++) {
+            const seatId = `${row}${i}`;
+            let seatClass = 'GOLD';
+            let price = service.base_price;
+
+            if (row === 'A') {
+              seatClass = 'VIP_RECLINER';
+              price = Math.round(service.base_price * 1.5);
+            } else if (row === 'B') {
+              seatClass = 'PLATINUM';
+              price = Math.round(service.base_price * 1.25);
+            }
+
+            const isBooked = bookedItems.includes(seatId) || (seatId === 'A1' || seatId === 'B5'); // seed booked
+            const isHeld = activeHolds.includes(seatId);
+
+            seats.push({
+              id: seatId,
+              row,
+              number: i,
+              seatClass,
+              price,
+              status: isBooked ? 'booked' : (isHeld ? 'held' : 'available')
+            });
+          }
+        });
+        inventory = { type: 'SEAT_GRID', seats, screenOrientation: 'TOP' };
+      }
     } else if (service.parent_type === 'TRANSPORT') {
       if (service.category_slug === 'flight') {
         // Flight layout: Business (Row 1-2), Economy (Row 10-12)
@@ -192,6 +282,58 @@ exports.getServiceInventory = async (req, res) => {
           berths.push({ id: b, tier: b.startsWith('L') ? 'Lower Berth' : 'Upper Berth', price: service.base_price, status: isBooked ? 'booked' : (isHeld ? 'held' : 'available') });
         });
         inventory = { type: 'BUS_BERTHS', berths };
+      } else if (service.category_slug === 'cab') {
+        // Cab Fleet Options
+        const vehicles = [
+          {
+            id: 'SEDAN',
+            name: 'UrbanDrive Executive Sedan',
+            model: 'Honda City / Maruti Ciaz',
+            capacity: 4,
+            luggage: 2,
+            perks: ['Uniformed Chauffeur', 'Bottled Mineral Water', 'Live GPS Tracking', 'Zero Cancellation Fee'],
+            price: service.base_price,
+            available: 8
+          },
+          {
+            id: 'SUV',
+            name: 'UrbanDrive Prime SUV',
+            model: 'Toyota Innova Crysta',
+            capacity: 6,
+            luggage: 4,
+            perks: ['Spacious 6-Seater', 'Reclining Captain Seats', 'Extra Boot Space', 'Chilled Water & Wi-Fi'],
+            price: Math.round(service.base_price * 1.35),
+            available: 5
+          },
+          {
+            id: 'LUXURY',
+            name: 'UrbanDrive First-Class',
+            model: 'Mercedes-Benz E-Class / BMW 5',
+            capacity: 4,
+            luggage: 3,
+            perks: ['Chauffeur in Tuxedo', 'Nappa Leather Comfort', 'High-Speed 5G Wi-Fi', 'Priority Airport Meet'],
+            price: Math.round(service.base_price * 2.2),
+            available: 3
+          },
+          {
+            id: 'EV',
+            name: 'UrbanDrive Eco Green EV',
+            model: 'BYD Atto 3 / Hyundai Ioniq 5',
+            capacity: 4,
+            luggage: 3,
+            perks: ['100% Electric Green Ride', 'Ultra-Silent Cabin', 'USB Fast Chargers'],
+            price: Math.round(service.base_price * 1.1),
+            available: 6
+          }
+        ].map(v => {
+          const isHeld = activeHolds.includes(v.id);
+          const isBooked = bookedItems.includes(v.id);
+          return {
+            ...v,
+            status: isBooked ? 'booked' : (isHeld ? 'held' : 'available')
+          };
+        });
+        inventory = { type: 'CAB_FLEET', vehicles };
       } else {
         inventory = { type: 'GENERAL_SEATS', capacity: service.capacity_total, available: Math.max(0, service.capacity_total - bookedItems.length) };
       }

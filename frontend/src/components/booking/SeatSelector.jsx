@@ -17,11 +17,13 @@ export default function SeatSelector({
 
     return (
       <div className="w-full flex flex-col items-center">
-        {/* Curved Screen Banner */}
+        {/* Curved Screen / Live Stage Banner */}
         <div className="w-full max-w-lg mb-6 flex flex-col items-center">
           <div className="w-full h-2 rounded-t-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-glow-cyan" />
           <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-1 font-semibold">
-            All Eyes Here • Curved IMAX Laser Screen
+            {categorySlug === 'movie'
+              ? 'All Eyes Here • Curved IMAX Laser Screen'
+              : 'Live Stage • Center Spotlight & Acoustic Zone'}
           </div>
         </div>
 

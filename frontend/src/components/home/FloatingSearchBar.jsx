@@ -21,7 +21,7 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
   const [transportMode, setTransportMode] = useState('all');
   const [fromCity, setFromCity] = useState('Mumbai');
   const [toCity, setToCity] = useState('Bengaluru');
-  const [selectedCity, setSelectedCity] = useState('Mumbai');
+  const [selectedCity, setSelectedCity] = useState('All Cities');
   const [searchDate, setSearchDate] = useState(new Date().toISOString().split('T')[0]);
   const [guestCount, setGuestCount] = useState(2);
   const [sportType, setSportType] = useState('turf');
@@ -47,17 +47,28 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
     'Chennai'
   ];
 
+  const destinationCities = [
+    'All Cities',
+    'Mumbai',
+    'Pune',
+    'Bengaluru',
+    'Delhi NCR',
+    'Goa',
+    'Hyderabad',
+    'Chennai'
+  ];
+
   const handleSearch = (e) => {
     e?.preventDefault();
     onSearchSubmit({
       type: activeTab,
-      city: activeTab === 'TRANSPORT' ? fromCity : selectedCity,
+      city: activeTab === 'TRANSPORT' ? fromCity : (selectedCity === 'All Cities' ? 'All' : selectedCity),
       toCity: activeTab === 'TRANSPORT' ? toCity : undefined,
       transportMode,
       date: searchDate,
       guests: guestCount,
       sportType,
-      keyword: movieQuery
+      keyword: movieQuery.trim()
     });
   };
 
@@ -164,7 +175,7 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
-                {indianCities.map((c) => (
+                {destinationCities.map((c) => (
                   <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
                 ))}
               </select>
@@ -215,7 +226,7 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
-                {indianCities.map((c) => (
+                {destinationCities.map((c) => (
                   <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
                 ))}
               </select>
@@ -253,7 +264,7 @@ export default function FloatingSearchBar({ onSearchSubmit }) {
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className="w-full glass-input rounded-xl px-3 py-2 text-xs font-medium"
               >
-                {indianCities.map((c) => (
+                {destinationCities.map((c) => (
                   <option key={c} value={c} className="bg-space-900 text-white">{c}</option>
                 ))}
               </select>

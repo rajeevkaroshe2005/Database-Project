@@ -6,12 +6,22 @@ export default function ServiceCatalog({
   services = [],
   activeCategory,
   onSelectCategory,
-  onBookNow
+  onBookNow,
+  searchQuery = '',
+  onSearchQueryChange,
+  selectedCity = 'All',
+  onSelectedCityChange
 }) {
   const { formatPrice } = useCurrency();
-  const [selectedCity, setSelectedCity] = useState('All');
+  const [internalCity, setInternalCity] = useState('All');
   const [sortBy, setSortBy] = useState('featured');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [internalSearchQuery, setInternalSearchQuery] = useState('');
+
+  const currentCity = onSelectedCityChange ? selectedCity : internalCity;
+  const setCity = onSelectedCityChange || setInternalCity;
+
+  const currentSearch = onSearchQueryChange ? searchQuery : internalSearchQuery;
+  const setSearch = onSearchQueryChange || setInternalSearchQuery;
 
   const cities = ['All', 'Mumbai', 'Pune', 'Bengaluru', 'Delhi NCR', 'Goa', 'Hyderabad'];
 
@@ -23,14 +33,14 @@ export default function ServiceCatalog({
     );
   }
 
-  if (selectedCity !== 'All') {
-    filtered = filtered.filter(s => s.city.toLowerCase() === selectedCity.toLowerCase());
+  if (currentCity !== 'All') {
+    filtered = filtered.filter(s => s.city.toLowerCase() === currentCity.toLowerCase());
   }
 
-  if (searchQuery.trim()) {
-    const q = searchQuery.toLowerCase();
+  if (currentSearch.trim()) {
+    const q = currentSearch.toLowerCase();
     filtered = filtered.filter(
-      s => s.title.toLowerCase().includes(q) || s.tagline.toLowerCase().includes(q) || s.city.toLowerCase().includes(q)
+      s => s.title.toLowerCase().includes(q) || s.tagline.toLowerCase().includes(q) || s.city.toLowerCase().includes(q) || s.category_slug.toLowerCase().includes(q)
     );
   }
 
@@ -48,7 +58,7 @@ export default function ServiceCatalog({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
           <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
-            Real-Time MySQL Catalog
+            Real-Time Catalog
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
             Available Venues & Travel Routes
@@ -57,12 +67,33 @@ export default function ServiceCatalog({
 
         {/* Filter Controls Bar */}
         <div className="flex flex-wrap items-center gap-2.5">
+          {/* Quick Search Input */}
+          <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs">
+            <Search className="w-3.5 h-3.5 text-cyan-400 mr-1.5 shrink-0" />
+            <input
+              type="text"
+              placeholder="Filter by name, artist, cab..."
+              value={currentSearch}
+              onChange={(e) => setSearch(e.target.value)}
+              className="bg-transparent text-slate-200 outline-none text-xs placeholder:text-slate-500 w-36 sm:w-48"
+            />
+            {currentSearch && (
+              <button
+                onClick={() => setSearch('')}
+                className="ml-1 text-slate-500 hover:text-white text-[10px]"
+                title="Clear filter"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
           {/* City Selector */}
           <div className="flex items-center glass-panel px-3 py-1.5 rounded-xl border border-white/10 text-xs">
             <MapPin className="w-3.5 h-3.5 text-cyan-400 mr-1.5" />
             <select
-              value={selectedCity}
-              onChange={(e) => setSelectedCity(e.target.value)}
+              value={currentCity}
+              onChange={(e) => setCity(e.target.value)}
               className="bg-transparent text-slate-200 outline-none cursor-pointer text-xs"
             >
               {cities.map(c => (

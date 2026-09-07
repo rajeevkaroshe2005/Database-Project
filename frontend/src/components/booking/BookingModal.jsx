@@ -101,15 +101,20 @@ export default function BookingModal({
   };
 
   const toggleItem = (id) => {
-    setSelectedItems((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
+    if (inventory.type === 'CAB_FLEET') {
+      // For cabs, selecting a vehicle chooses that specific vehicle
+      setSelectedItems((prev) => (prev.includes(id) ? [] : [id]));
+    } else {
+      setSelectedItems((prev) =>
+        prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      );
+    }
   };
 
   // Step 1 -> Step 2: Acquire Temporary 5-minute Hold in Database
   const handleProceedToDetails = async () => {
     if (inventory.type !== 'GENERAL_ADMISSION' && selectedItems.length === 0) {
-      alert('Please select at least one seat, slot, or room to proceed.');
+      alert('Please select at least one seat, slot, pass, or vehicle to proceed.');
       return;
     }
 
@@ -123,7 +128,7 @@ export default function BookingModal({
       }
       setStep(2);
     } catch (err) {
-      alert(err.message || 'Seat temporarily unavailable.');
+      alert(err.message || 'Selected resource temporarily unavailable.');
     }
   };
 
@@ -144,9 +149,41 @@ export default function BookingModal({
     }
   };
 
-  // Price Calculation Breakdown
+  // Dynamic Price Calculation Breakdown (handles tiered seats, passes, vehicles, rooms)
+  let calculatedBaseAmount = 0;
+  if (selectedItems.length > 0) {
+    selectedItems.forEach((itemId) => {
+      let itemPrice = service.base_price;
+      if (inventory.seats) {
+        const s = inventory.seats.find((x) => x.id === itemId);
+        if (s && s.price) itemPrice = s.price;
+      } else if (inventory.passes) {
+        const p = inventory.passes.find((x) => x.id === itemId);
+        if (p && p.price) itemPrice = p.price;
+      } else if (inventory.vehicles) {
+        const v = inventory.vehicles.find((x) => x.id === itemId);
+        if (v && v.price) itemPrice = v.price;
+      } else if (inventory.rooms) {
+        const r = inventory.rooms.find((x) => x.id === itemId);
+        if (r && r.price) itemPrice = r.price;
+      } else if (inventory.tables) {
+        const t = inventory.tables.find((x) => x.id === itemId);
+        if (t && t.price) itemPrice = t.price;
+      } else if (inventory.slots) {
+        const sl = inventory.slots.find((x) => x.id === itemId);
+        if (sl && sl.price) itemPrice = sl.price;
+      } else if (inventory.berths) {
+        const b = inventory.berths.find((x) => x.id === itemId);
+        if (b && b.price) itemPrice = b.price;
+      }
+      calculatedBaseAmount += itemPrice;
+    });
+  } else {
+    calculatedBaseAmount = service.base_price * Math.max(1, guestCount);
+  }
+
   const itemsCount = selectedItems.length > 0 ? selectedItems.length : Math.max(1, guestCount);
-  const rawBaseAmount = service.base_price * itemsCount;
+  const rawBaseAmount = calculatedBaseAmount;
   const rewardPointsDiscount = redeemRewards ? Math.min(user?.rewardPoints || 0, Math.floor(rawBaseAmount * 0.2)) : 0;
   const totalDiscount = couponDiscount + rewardPointsDiscount;
   const taxableAmount = Math.max(0, rawBaseAmount - totalDiscount);
@@ -167,7 +204,8 @@ export default function BookingModal({
         passengers: [{ name: guestName, phone: guestPhone }],
         couponCode: couponApplied?.code,
         redeemPoints: rewardPointsDiscount,
-        paymentMethod: paymentResult.method
+        paymentMethod: paymentResult.method,
+        customBaseAmount: rawBaseAmount
       };
 
       const res = await api.createBooking(payload);
@@ -411,7 +449,7 @@ export default function BookingModal({
               {/* Complete Price Breakdown (DBMS / Accounting Requirement) */}
               <div className="glass-panel p-4 rounded-2xl border border-white/10 text-xs space-y-2">
                 <div className="flex justify-between text-slate-300">
-                  <span>Base Price ({itemsCount} units @ {formatPrice(service.base_price)})</span>
+                  <span>Base Fare / Admission ({itemsCount} {itemsCount === 1 ? 'unit' : 'units'})</span>
                   <span>{formatPrice(rawBaseAmount)}</span>
                 </div>
                 {couponDiscount > 0 && (

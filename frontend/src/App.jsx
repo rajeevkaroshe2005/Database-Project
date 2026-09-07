@@ -19,6 +19,8 @@ export default function App() {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [catalogSearchQuery, setCatalogSearchQuery] = useState('');
+  const [catalogCity, setCatalogCity] = useState('All');
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
@@ -41,6 +43,7 @@ export default function App() {
   // Handle category navigation from navbar or cards
   const handleSelectCategory = (catId) => {
     setActiveCategory(catId);
+    setCatalogSearchQuery('');
     setActiveView('home');
     const el = document.getElementById('catalog-section');
     if (el) {
@@ -50,9 +53,23 @@ export default function App() {
 
   // Handle Search Submission from Floating Search Bar
   const handleSearchSubmit = (searchParams) => {
-    if (searchParams.type) {
-      setActiveCategory(searchParams.type.toLowerCase());
+    if (searchParams.keyword) {
+      setCatalogSearchQuery(searchParams.keyword);
+      // When searching by keyword (e.g. Zakir Khan, Martin Garrix, Avatar), reset category & city filters to avoid excluding matches
+      setActiveCategory('all');
+      setCatalogCity('All');
+    } else {
+      setCatalogSearchQuery('');
+      if (searchParams.type) {
+        setActiveCategory(searchParams.type.toLowerCase());
+      }
+      if (searchParams.city && searchParams.city !== 'All Cities') {
+        setCatalogCity(searchParams.city);
+      } else {
+        setCatalogCity('All');
+      }
     }
+
     const el = document.getElementById('catalog-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -136,6 +153,10 @@ export default function App() {
               services={services}
               activeCategory={activeCategory}
               onSelectCategory={setActiveCategory}
+              searchQuery={catalogSearchQuery}
+              onSearchQueryChange={setCatalogSearchQuery}
+              selectedCity={catalogCity}
+              onSelectedCityChange={setCatalogCity}
               onBookNow={handleOpenBooking}
             />
 
