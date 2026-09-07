@@ -43,14 +43,14 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
       case 'HOTEL': return <Building2 className="w-4 h-4 text-gold" />;
       case 'ENTERTAINMENT': return <Film className="w-4 h-4 text-terracotta" />;
       case 'SPORTS': return <Trophy className="w-4 h-4 text-emerald-400" />;
-      case 'RESTAURANT': return <UtensilsCrossed className="w-4 h-4 text-sand" />;
+      case 'RESTAURANT': return <UtensilsCrossed className="w-4 h-4 text-[#171513]" />;
       case 'TRANSPORT': return <PlaneTakeoff className="w-4 h-4 text-gold" />;
       default: return <Compass className="w-4 h-4 text-gold" />;
     }
   };
 
   return (
-    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-sand/15 shadow-2xl bg-gradient-to-b from-[#FAF8F3] via-[#F3EFE6] to-[#EAE4D8] border border-sand-300 shadow-luxury select-none">
+    <div className="relative w-full h-[480px] sm:h-[520px] lg:h-[580px] rounded-3xl overflow-hidden glass-panel border border-[#D4C8B8] shadow-2xl bg-gradient-to-b from-[#FAF8F3] via-[#F3EFE6] to-[#EAE4D8] border border-sand-300 shadow-luxury select-none">
       {/* Top HUD Controls Overlay */}
       <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2 pointer-events-auto">
         {/* Live Status Badge */}
@@ -59,8 +59,8 @@ export default function HeroBusTour({ onSelectService, services = [] }) {
           <span className="font-bold text-xs uppercase tracking-wider text-gold">
             BookSphere Express 3D
           </span>
-          <span className="text-sand/50 hidden sm:inline">•</span>
-          <span className="text-sand font-bold text-xs hidden sm:inline">{speedKmh} km/h</span>
+          <span className="text-[#171513]/50 hidden sm:inline">•</span>
+          <span className="text-[#171513] font-bold text-xs hidden sm:inline">{speedKmh} km/h</span>
         </div>
 
         {/* Quick Controls: Speed, Camera & Play/Pause */}
